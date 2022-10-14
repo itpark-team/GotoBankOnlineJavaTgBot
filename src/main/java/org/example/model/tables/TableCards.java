@@ -27,6 +27,30 @@ public class TableCards {
         statement.close();
     }
 
+    public Card getByCardId(long cardId) throws SQLException {
+        Card card = null;
+
+        Statement statement = connection.createStatement();
+
+        String selectQuery = String.format("SELECT * FROM cards WHERE id = %d ORDER BY id ASC", cardId);
+
+        ResultSet resultSet = statement.executeQuery(selectQuery);
+
+        int id = resultSet.getInt("id");
+        long chatId = resultSet.getLong("chat_id");
+        BigDecimal balance = resultSet.getBigDecimal("balance");
+        long number = resultSet.getLong("number");
+        int paymentSystemId = resultSet.getInt("payment_system_id");
+
+        card = new Card(id, chatId, balance, number, paymentSystemId);
+
+        resultSet.close();
+
+        statement.close();
+
+        return card;
+    }
+
     public boolean hasCardWithNumber(long number) throws SQLException {
         Statement statement = connection.createStatement();
 
