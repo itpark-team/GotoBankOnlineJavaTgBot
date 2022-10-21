@@ -19,7 +19,7 @@ public class ChatRouter {
         serviceManager = new ServiceManager();
     }
 
-    public SendMessage route(long chatId, String textData) {
+    public SendMessage route(long chatId, String textData) throws Exception {
         if (!chats.containsKey(chatId)) {
             chats.put(chatId, new TransmittedData(chatId));
         }

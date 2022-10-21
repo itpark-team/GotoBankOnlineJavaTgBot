@@ -23,9 +23,10 @@ public class ServiceManager {
         mainMenuService = new MainMenuService();
 
         methods.put(State.WaitingCommandStart, mainMenuService::processCommandStart);
+        methods.put(State.WaitingClickOnInlineButtonInMenuMain, mainMenuService::processClickOnInlineButtonInMenuMain);
     }
 
-    public SendMessage processUpdate(String textData, TransmittedData transmittedData) {
+    public SendMessage processUpdate(String textData, TransmittedData transmittedData) throws Exception {
         return methods.get(transmittedData.getState()).processUpdate(textData, transmittedData);
     }
 
