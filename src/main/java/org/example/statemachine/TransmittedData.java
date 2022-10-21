@@ -4,8 +4,10 @@ public class TransmittedData {
 
     private State state;
     private DataStorage dataStorage;
+    private long chatId;
 
-    public TransmittedData() {
+    public TransmittedData(long chatId) {
+        this.chatId = chatId;
         state = State.WaitingCommandStart;
         dataStorage = new DataStorage();
     }
@@ -20,5 +22,9 @@ public class TransmittedData {
 
     public DataStorage getDataStorage() {
         return dataStorage;
+    }
+
+    public long getChatId() {
+        return chatId;
     }
 }

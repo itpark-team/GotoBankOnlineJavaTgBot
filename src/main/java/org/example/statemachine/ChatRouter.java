@@ -2,6 +2,7 @@ package org.example.statemachine;
 
 import org.example.service.ServiceManager;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
+import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
@@ -17,14 +18,14 @@ public class ChatRouter {
         serviceManager = new ServiceManager();
     }
 
-    public void route(long chatId, Update update, TelegramLongPollingBot bot) throws TelegramApiException {
+    public SendMessage route(long chatId, String textData) {
         if (!chats.containsKey(chatId)) {
-            chats.put(chatId, new TransmittedData());
+            chats.put(chatId, new TransmittedData(chatId));
         }
 
         TransmittedData transmittedData = chats.get(chatId);
 
-        serviceManager.processUpdate(chatId, transmittedData, update, bot);
+        return serviceManager.processUpdate(textData, transmittedData);
     }
 
 }
