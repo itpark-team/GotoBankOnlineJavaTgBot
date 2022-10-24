@@ -19,7 +19,10 @@ public class ButtonsStorage {
         }
     }
 
-    public final static Button ButtonMyCardsInMenuMain = new Button("РњРѕРё РєР°СЂС‚С‹", "ButtonMyCardsInMenuMain");
-    public final static Button ButtonTransferMoneyInMenuMain = new Button("РџРµСЂРµРІРµСЃС‚Рё РґРµРЅСЊРіРё", "ButtonTransferMoneyInMenuMain");
-    public final static Button ButtonInstructionInMenuMain = new Button("РРЅСЃС‚СЂСѓРєС†РёСЏ", "ButtonInstructionInMenuMain");
+    public final static Button ButtonMyCardsInMenuMain = new Button("Мои карты", "ButtonMyCardsInMenuMain");
+    public final static Button ButtonTransferMoneyInMenuMain = new Button("Перевести деньги", "ButtonTransferMoneyInMenuMain");
+    public final static Button ButtonInstructionInMenuMain = new Button("Инструкция", "ButtonInstructionInMenuMain");
+
+    public final static Button ButtonAddNewCardInMenuMyCard = new Button("Добавить новую","ButtonAddNewCardInMenuMyCard");
+    public final static Button ButtonBackInMenuMyCard = new Button("Назад","ButtonBackInMenuMyCard");
 }
