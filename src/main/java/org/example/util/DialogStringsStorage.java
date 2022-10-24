@@ -2,11 +2,11 @@ package org.example.util;
 
 public class DialogStringsStorage {
 
-    public final static String CommandStartOK = "Выберите действие";
-    public final static String CommandStartError = "Команда не распознана. Для начала работы с ботом введите /start";
+    public final static String CommandStartOK = "Р’С‹Р±РµСЂРёС‚Рµ РґРµР№СЃС‚РІРёРµ";
+    public final static String CommandStartError = "РљРѕРјР°РЅРґР° РЅРµ СЂР°СЃРїРѕР·РЅР°РЅР°. Р”Р»СЏ РЅР°С‡Р°Р»Р° СЂР°Р±РѕС‚С‹ СЃ Р±РѕС‚РѕРј РІРІРµРґРёС‚Рµ /start";
 
-    public final static String MenuMyCardsText = "Выберите действие:";
-    public final static String MenuMyCardsNoCardsText = "В Вашем списке еще нет карт! Создайте новую карту.";
+    public final static String MenuMyCardsText = "Р’С‹Р±РµСЂРёС‚Рµ РґРµР№СЃС‚РІРёРµ:";
+    public final static String MenuMyCardsNoCardsText = "Р’ Р’Р°С€РµРј СЃРїРёСЃРєРµ РµС‰Рµ РЅРµС‚ РєР°СЂС‚! РЎРѕР·РґР°Р№С‚Рµ РЅРѕРІСѓСЋ РєР°СЂС‚Сѓ.";
 
 
 }
