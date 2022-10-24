@@ -4,7 +4,6 @@ import org.example.statemachine.State;
 import org.example.statemachine.TransmittedData;
 import org.example.util.DialogStringsStorage;
 import org.example.util.InlineKeyboardsMarkupStorage;
-import org.example.util.SystemStringsStorage;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 
 public class StaticService {
