@@ -26,7 +26,7 @@ public class ButtonsStorage {
     public final static Button ButtonAddNewCardInMenuMyCard = new Button("Добавить новую","ButtonAddNewCardInMenuMyCard");
     public final static Button ButtonBackInMenuMyCard = new Button("Назад","ButtonBackInMenuMyCard");
 
-    public final static Button ButtonAddMoneyToBalanceInMenuChooseSpecificCard = new Button("Полнить баланс","ButtonAddMoneyToBalanceInMenuChooseSpecificCard");
+    public final static Button ButtonAddMoneyToBalanceInMenuChooseSpecificCard = new Button("Пополнить баланс","ButtonAddMoneyToBalanceInMenuChooseSpecificCard");
     public final static Button ButtonDeleteCardInMenuChooseSpecificCard = new Button("Удалить карту","ButtonDeleteCardInMenuChooseSpecificCard");
     public final static Button ButtonBackInMenuChooseSpecificCard = new Button("Назад","ButtonBackInMenuChooseSpecificCard");
 
