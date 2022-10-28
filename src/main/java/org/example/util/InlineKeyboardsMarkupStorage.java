@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InlineKeyboardsMarkupStorage {
-    public static InlineKeyboardMarkup GetInlineKeyboardMarkupMenuMain() {
+    public static InlineKeyboardMarkup getInlineKeyboardMarkupMenuMain() {
         List<List<InlineKeyboardButton>> keyboard = new ArrayList<>();
 
         List<InlineKeyboardButton> row;
@@ -41,7 +41,7 @@ public class InlineKeyboardsMarkupStorage {
         return replyKeyboardMarkup;
     }
 
-    public static InlineKeyboardMarkup GetInlineKeyboardMarkupMenuMyCardsNoCards(){
+    public static InlineKeyboardMarkup getInlineKeyboardMarkupMenuMyCardsNoCards(){
 
         List<List<InlineKeyboardButton>> keyboard = new ArrayList<>();
 
@@ -69,7 +69,7 @@ public class InlineKeyboardsMarkupStorage {
 
     }
 
-    public static InlineKeyboardMarkup CreateInlineKeyboardMarkupMenuMyCardsHasCards(List<Card> cards){
+    public static InlineKeyboardMarkup createInlineKeyboardMarkupMenuMyCardsHasCards(List<Card> cards){
 
         List<List<InlineKeyboardButton>> keyboard = new ArrayList<>();
 
@@ -105,5 +105,40 @@ public class InlineKeyboardsMarkupStorage {
         return replyKeyboardMarkup;
 
     }
+
+    public static InlineKeyboardMarkup getInlineKeyboardMarkupMenuChooseSpecificCard(){
+
+        List<List<InlineKeyboardButton>> keyboard = new ArrayList<>();
+
+        List<InlineKeyboardButton> row;
+        InlineKeyboardButton button;
+
+        row = new ArrayList<>();
+        button = new InlineKeyboardButton();
+        button.setText(ButtonsStorage.ButtonAddMoneyToBalanceInMenuChooseSpecificCard.getName());
+        button.setCallbackData(ButtonsStorage.ButtonAddMoneyToBalanceInMenuChooseSpecificCard.getCallBackData());
+        row.add(button);
+        keyboard.add(row);
+
+        row = new ArrayList<>();
+        button = new InlineKeyboardButton();
+        button.setText(ButtonsStorage.ButtonDeleteCardInMenuChooseSpecificCard.getName());
+        button.setCallbackData(ButtonsStorage.ButtonDeleteCardInMenuChooseSpecificCard.getCallBackData());
+        row.add(button);
+        keyboard.add(row);
+
+        row = new ArrayList<>();
+        button = new InlineKeyboardButton();
+        button.setText(ButtonsStorage.ButtonBackInMenuChooseSpecificCard.getName());
+        button.setCallbackData(ButtonsStorage.ButtonBackInMenuChooseSpecificCard.getCallBackData());
+        row.add(button);
+        keyboard.add(row);
+
+        InlineKeyboardMarkup replyKeyboardMarkup = new InlineKeyboardMarkup();
+        replyKeyboardMarkup.setKeyboard(keyboard);
+        return replyKeyboardMarkup;
+    }
+
+
 
 }
