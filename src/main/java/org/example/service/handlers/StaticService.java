@@ -14,7 +14,7 @@ public class StaticService {
         SendMessage message = new SendMessage();
         message.setChatId(transmittedData.getChatId());
         message.setText(DialogStringsStorage.CommandStartOK);
-        message.setReplyMarkup(InlineKeyboardsMarkupStorage.GetInlineKeyboardMarkupMenuMain());
+        message.setReplyMarkup(InlineKeyboardsMarkupStorage.getInlineKeyboardMarkupMenuMain());
 
         return message;
     }

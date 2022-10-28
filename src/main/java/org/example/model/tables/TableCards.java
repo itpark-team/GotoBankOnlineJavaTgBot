@@ -36,6 +36,8 @@ public class TableCards {
 
         ResultSet resultSet = statement.executeQuery(selectQuery);
 
+        resultSet.next();
+
         int id = resultSet.getInt("id");
         long chatId = resultSet.getLong("chat_id");
         BigDecimal balance = resultSet.getBigDecimal("balance");

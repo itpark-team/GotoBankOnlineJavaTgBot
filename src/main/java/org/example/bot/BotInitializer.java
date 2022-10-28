@@ -42,7 +42,7 @@ public class BotInitializer extends TelegramLongPollingBot {
                 messageId = update.getCallbackQuery().getMessage().getMessageId();
                 textData = update.getCallbackQuery().getData();
             }
-
+            //System.out.println(chatId); для потомков )0
             SendMessage message = chatRouter.route(chatId, textData);
             execute(message);
         } catch (Exception e) {

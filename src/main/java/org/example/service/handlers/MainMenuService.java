@@ -3,7 +3,6 @@ package org.example.service.handlers;
 import org.example.model.DbManager;
 import org.example.model.entities.Card;
 import org.example.model.entities.PaymentSystem;
-import org.example.model.tables.TableCards;
 import org.example.statemachine.State;
 import org.example.statemachine.TransmittedData;
 import org.example.util.ButtonsStorage;
@@ -25,7 +24,7 @@ public class MainMenuService {
         }
 
         message.setText(DialogStringsStorage.CommandStartOK);
-        message.setReplyMarkup(InlineKeyboardsMarkupStorage.GetInlineKeyboardMarkupMenuMain());
+        message.setReplyMarkup(InlineKeyboardsMarkupStorage.getInlineKeyboardMarkupMenuMain());
 
         transmittedData.setState(State.WaitingClickOnInlineButtonInMenuMain);
 
@@ -42,7 +41,7 @@ public class MainMenuService {
 
             if (cards.size() == 0) {
                 message.setText(DialogStringsStorage.MenuMyCardsText + "\n" + DialogStringsStorage.MenuMyCardsNoCardsText);
-                message.setReplyMarkup(InlineKeyboardsMarkupStorage.GetInlineKeyboardMarkupMenuMyCardsNoCards());
+                message.setReplyMarkup(InlineKeyboardsMarkupStorage.getInlineKeyboardMarkupMenuMyCardsNoCards());
             } else {
                 List<PaymentSystem> paymentSystems = DbManager.getInstance().getTablePaymentSystems().getAll();
                 cards.stream().forEach(
@@ -53,7 +52,7 @@ public class MainMenuService {
                 );
 
                 message.setText(DialogStringsStorage.MenuMyCardsText);
-                message.setReplyMarkup(InlineKeyboardsMarkupStorage.CreateInlineKeyboardMarkupMenuMyCardsHasCards(cards));
+                message.setReplyMarkup(InlineKeyboardsMarkupStorage.createInlineKeyboardMarkupMenuMyCardsHasCards(cards));
             }
 
             transmittedData.setState(State.WaitingClickOnInlineButtonInMenuMyCards);

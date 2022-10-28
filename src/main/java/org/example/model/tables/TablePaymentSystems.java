@@ -38,4 +38,27 @@ public class TablePaymentSystems {
 
         return paymentSystems;
     }
+
+    public PaymentSystem getById(int paymentSystemId) throws SQLException {
+        PaymentSystem paymentSystem = null;
+
+        Statement statement = connection.createStatement();
+
+        String selectQuery = String.format("SELECT * FROM payment_systems WHERE id = %d", paymentSystemId);
+
+        ResultSet resultSet = statement.executeQuery(selectQuery);
+
+        resultSet.next();
+
+        int id = resultSet.getInt("id");
+        String name = resultSet.getString("name");
+
+        paymentSystem = new PaymentSystem(id, name);
+
+        resultSet.close();
+
+        statement.close();
+
+        return paymentSystem;
+    }
 }
