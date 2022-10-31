@@ -106,18 +106,22 @@ public class TableCards {
 
     public void depositMoneyToBalanceByCardId(int cardId, BigDecimal money) throws SQLException {
         Statement statement = connection.createStatement();
-        String updateQuery = String.format("UPDATE cards set balance = balance + %d WHERE id = %d", money, cardId);
+        String updateQuery = String.format("UPDATE cards set balance = balance + %.2f WHERE id = %d", money, cardId);
 
+        updateQuery = updateQuery.replace(',', '.');
         statement.executeUpdate(updateQuery);
         statement.close();
     }
 
-    public void takeoffMoneyFromBalanceByCardId(int cardId, BigDecimal money) throws SQLException {
+    public void takeOffMoneyFromBalanceByCardId(int cardId, BigDecimal money) throws SQLException {
         Statement statement = connection.createStatement();
-        String updateQuery = String.format("UPDATE cards set balance = balance + %d WHERE id = %d", money, cardId);
+        String updateQuery = String.format("UPDATE cards set balance = balance + %.2f WHERE id = %d", money, cardId);
+        updateQuery = updateQuery.replace(',', '.');
 
         statement.executeUpdate(updateQuery);
         statement.close();
     }
+
+
 
 }

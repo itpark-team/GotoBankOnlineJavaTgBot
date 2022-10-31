@@ -14,22 +14,19 @@ public class ServiceManager {
     private final Map<State, Service> methods;
     private final MainMenuService mainMenuService;
     private final MyCardsService myCardsService;
-
     private final StaticService staticService;
 
 
     public ServiceManager() {
         staticService = new StaticService();
-
-
         methods = new HashMap<>();
-
         mainMenuService = new MainMenuService();
         myCardsService = new MyCardsService();
-
         methods.put(State.WaitingCommandStart, mainMenuService::processCommandStart);
         methods.put(State.WaitingClickOnInlineButtonInMenuMain, mainMenuService::processClickOnInlineButtonInMenuMain);
         methods.put(State.WaitingClickOnInlineButtonInMenuMyCards, myCardsService::processClickOnInlineButtonInMenuMyCards);
+        methods.put(State.WaitingClickOnInlineButtonInMenuChooseSpecificCard, myCardsService::processClickOnInlineButtonInMenuChooseSpecificCard);
+        methods.put(State.WaitingInputIncomeMoneyForSpecificCard, myCardsService ::processInputIncomeMoneyForSpecificCard);
     }
 
     public SendMessage processUpdate(String textData, TransmittedData transmittedData) throws Exception {
