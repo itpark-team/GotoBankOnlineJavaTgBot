@@ -3,7 +3,6 @@ package org.example.service.handlers;
 import org.example.model.DbManager;
 import org.example.model.entities.Card;
 import org.example.model.entities.PaymentSystem;
-import org.example.model.tables.TableCards;
 import org.example.statemachine.State;
 import org.example.statemachine.TransmittedData;
 import org.example.util.*;
@@ -22,13 +21,16 @@ public class MenuPointMyCardsService {
         } else if (callBackData.equals(ButtonsStorage.ButtonAddNewCardInMenuMyCard.getCallBackData())) {
             throw new Exception("ввели хуйню");
         } else if (callBackData.startsWith(SystemStringsStorage.CallbackCardId)) {
-            callBackData = callBackData.replace(SystemStringsStorage.CallbackCardId,"");
+            callBackData = callBackData.replace(SystemStringsStorage.CallbackCardId, "");
             int cardId = Integer.parseInt(callBackData);
+
             Card card = DbManager.getInstance().getTableCards().getByCardId(cardId);
             PaymentSystem paymentSystem = DbManager.getInstance().getTablePaymentSystems().getById(card.getPaymentSystemId());
-            transmittedData.getDataStorage().add(SystemStringsStorage.CurrentCardId, cardId);
+            card.setPaymentSystem(paymentSystem);
 
-            message.setText(DialogStringsStorage.CreateMenuChooseSpecificCard(paymentSystem.getName(), card.getNumber(), card.getBalance()));
+            transmittedData.getDataStorage().add(SystemStringsStorage.DataStorageCurrentCard, card);
+
+            message.setText(DialogStringsStorage.CreateMenuChooseSpecificCard(card.getPaymentSystem().getName(), card.getNumber(), card.getBalance()));
             message.setReplyMarkup(InlineKeyboardsMarkupStorage.getInlineKeyboardMarkupMenuChooseSpecificCard());
 
             transmittedData.setState(State.WaitingClickOnInlineButtonInMenuChooseSpecificCard);
@@ -76,8 +78,8 @@ public class MenuPointMyCardsService {
             return message;
         }
 
-        int cardId = (int) transmittedData.getDataStorage().get(SystemStringsStorage.CurrentCardId);
-        DbManager.getInstance().getTableCards().depositMoneyToBalanceByCardId(cardId, money);
+        Card card = (Card) transmittedData.getDataStorage().get(SystemStringsStorage.DataStorageCurrentCard);
+        DbManager.getInstance().getTableCards().depositMoneyToBalanceByCardId(card.getId(), money);
 
         message.setText(DialogStringsStorage.ActionIncomeMoneyForSpecificCardOk);
 
