@@ -41,7 +41,7 @@ public class InlineKeyboardsMarkupStorage {
         return replyKeyboardMarkup;
     }
 
-    public static InlineKeyboardMarkup getInlineKeyboardMarkupMenuMyCardsNoCards(){
+    public static InlineKeyboardMarkup getInlineKeyboardMarkupMenuMyCardsNoCards() {
 
         List<List<InlineKeyboardButton>> keyboard = new ArrayList<>();
 
@@ -69,7 +69,7 @@ public class InlineKeyboardsMarkupStorage {
 
     }
 
-    public static InlineKeyboardMarkup createInlineKeyboardMarkupMenuMyCardsHasCards(List<Card> cards){
+    public static InlineKeyboardMarkup createInlineKeyboardMarkupMenuMyCardsHasCards(List<Card> cards) {
 
         List<List<InlineKeyboardButton>> keyboard = new ArrayList<>();
 
@@ -79,8 +79,8 @@ public class InlineKeyboardsMarkupStorage {
         for (int i = 0; i < cards.size(); i++) {
             row = new ArrayList<>();
             button = new InlineKeyboardButton();
-            button.setText(cards.get(i).getPaymentSystem().getName()+" "+cards.get(i).getNumber());
-            button.setCallbackData(Integer.toString(cards.get(i).getId()));
+            button.setText(cards.get(i).getPaymentSystem().getName() + " " + cards.get(i).getNumber());
+            button.setCallbackData(SystemStringsStorage.CallbackCardId + cards.get(i).getId());
             row.add(button);
             keyboard.add(row);
         }
@@ -106,7 +106,7 @@ public class InlineKeyboardsMarkupStorage {
 
     }
 
-    public static InlineKeyboardMarkup getInlineKeyboardMarkupMenuChooseSpecificCard(){
+    public static InlineKeyboardMarkup getInlineKeyboardMarkupMenuChooseSpecificCard() {
 
         List<List<InlineKeyboardButton>> keyboard = new ArrayList<>();
 
@@ -138,7 +138,6 @@ public class InlineKeyboardsMarkupStorage {
         replyKeyboardMarkup.setKeyboard(keyboard);
         return replyKeyboardMarkup;
     }
-
 
 
 }

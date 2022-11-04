@@ -23,12 +23,7 @@ public class MainMenuService {
             return message;
         }
 
-        message.setText(DialogStringsStorage.CommandStartOK);
-        message.setReplyMarkup(InlineKeyboardsMarkupStorage.getInlineKeyboardMarkupMenuMain());
-
-        transmittedData.setState(State.WaitingClickOnInlineButtonInMenuMain);
-
-        return message;
+        return SharedService.goToProcessClickOnInlineButtonInMenuMyCards(transmittedData);
     }
 
     public SendMessage processClickOnInlineButtonInMenuMain(String callBackData, TransmittedData transmittedData) throws Exception {
@@ -56,7 +51,6 @@ public class MainMenuService {
             }
 
             transmittedData.setState(State.WaitingClickOnInlineButtonInMenuMyCards);
-
             return message;
         } else if (callBackData.equals(ButtonsStorage.ButtonTransferMoneyInMenuMain.getCallBackData())) {
             message.setText("нажали на перевод денег");

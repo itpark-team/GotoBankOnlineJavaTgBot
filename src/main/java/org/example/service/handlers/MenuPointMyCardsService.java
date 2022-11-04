@@ -11,24 +11,18 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 
 import java.math.BigDecimal;
 
-public class MyCardsService {
+public class MenuPointMyCardsService {
 
     public SendMessage processClickOnInlineButtonInMenuMyCards(String callBackData, TransmittedData transmittedData) throws Exception {
         SendMessage message = new SendMessage();
         message.setChatId(transmittedData.getChatId());
 
         if (callBackData.equals(ButtonsStorage.ButtonBackInMenuMyCard.getCallBackData())) {
-            message.setText(DialogStringsStorage.CommandStartOK);
-            message.setReplyMarkup(InlineKeyboardsMarkupStorage.getInlineKeyboardMarkupMenuMain());
-
-            transmittedData.setState(State.WaitingClickOnInlineButtonInMenuMain);
-
-            return message;
+            return SharedService.goToProcessClickOnInlineButtonInMenuMyCards(transmittedData);
         } else if (callBackData.equals(ButtonsStorage.ButtonAddNewCardInMenuMyCard.getCallBackData())) {
-
-
             throw new Exception("ввели хуйню");
-        } else { // сделать защиту от ввода рандом значений
+        } else if (callBackData.startsWith(SystemStringsStorage.CallbackCardId)) {
+            callBackData = callBackData.replace(SystemStringsStorage.CallbackCardId,"");
             int cardId = Integer.parseInt(callBackData);
             Card card = DbManager.getInstance().getTableCards().getByCardId(cardId);
             PaymentSystem paymentSystem = DbManager.getInstance().getTablePaymentSystems().getById(card.getPaymentSystemId());
@@ -36,10 +30,11 @@ public class MyCardsService {
 
             message.setText(DialogStringsStorage.CreateMenuChooseSpecificCard(paymentSystem.getName(), card.getNumber(), card.getBalance()));
             message.setReplyMarkup(InlineKeyboardsMarkupStorage.getInlineKeyboardMarkupMenuChooseSpecificCard());
+
             transmittedData.setState(State.WaitingClickOnInlineButtonInMenuChooseSpecificCard);
             return message;
         }
-
+        throw new Exception("ввели хуйню");
     }
 
     public SendMessage processClickOnInlineButtonInMenuChooseSpecificCard(String callBackData, TransmittedData transmittedData) throws Exception {
@@ -49,8 +44,8 @@ public class MyCardsService {
 
         if (callBackData.equals(ButtonsStorage.ButtonAddMoneyToBalanceInMenuChooseSpecificCard.getCallBackData())) {
             message.setText(DialogStringsStorage.ActionIncomeMoneyForSpecificCard);
-            transmittedData.setState(State.WaitingInputIncomeMoneyForSpecificCard);
 
+            transmittedData.setState(State.WaitingInputIncomeMoneyForSpecificCard);
             return message;
         } else if (callBackData.equals(ButtonsStorage.ButtonDeleteCardInMenuChooseSpecificCard.getCallBackData())) {
             message.setText("Кнопка удалить карту");
@@ -85,6 +80,7 @@ public class MyCardsService {
         DbManager.getInstance().getTableCards().depositMoneyToBalanceByCardId(cardId, money);
 
         message.setText(DialogStringsStorage.ActionIncomeMoneyForSpecificCardOk);
+
         transmittedData.setState(State.WaitingCommandStart);
         return message;
     }

@@ -1,13 +1,12 @@
 package org.example.util;
 
-import java.io.FileOutputStream;
 
 public class SystemStringsStorage {
-    public final static String Empty = "empty";
+    public final static String Empty = "Empty";
     public final static String CommandStart = "/start";
     public final static String CommandReset = "/reset";
 
-    public final static String CurrentCardId = "currentCardId";
+    public final static String CurrentCardId = "CurrentCardId";
 
-
+    public final static String CallbackCardId = "CallbackCardId";
 }
