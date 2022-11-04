@@ -30,6 +30,7 @@ public class ButtonsStorage {
     public final static Button ButtonDeleteCardInMenuChooseSpecificCard = new Button("Удалить карту","ButtonDeleteCardInMenuChooseSpecificCard");
     public final static Button ButtonBackInMenuChooseSpecificCard = new Button("Назад","ButtonBackInMenuChooseSpecificCard");
 
-
+    public final static Button ButtonMenuApproveDeleteSpecificCardYes = new Button("Да", "ButtonMenuApproveDeleteSpecificCardYes");
+    public final static Button ButtonMenuApproveDeleteSpecificCardNo = new Button("Нет", "ButtonMenuApproveDeleteSpecificCardNo");
 
 }

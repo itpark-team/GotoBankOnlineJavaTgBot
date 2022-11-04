@@ -30,7 +30,7 @@ public class MenuPointMyCardsService {
 
             transmittedData.getDataStorage().add(SystemStringsStorage.DataStorageCurrentCard, card);
 
-            message.setText(DialogStringsStorage.CreateMenuChooseSpecificCard(card.getPaymentSystem().getName(), card.getNumber(), card.getBalance()));
+            message.setText(DialogStringsStorage.createMenuChooseSpecificCard(card.getPaymentSystem().getName(), card.getNumber(), card.getBalance()));
             message.setReplyMarkup(InlineKeyboardsMarkupStorage.getInlineKeyboardMarkupMenuChooseSpecificCard());
 
             transmittedData.setState(State.WaitingClickOnInlineButtonInMenuChooseSpecificCard);
@@ -50,7 +50,13 @@ public class MenuPointMyCardsService {
             transmittedData.setState(State.WaitingInputIncomeMoneyForSpecificCard);
             return message;
         } else if (callBackData.equals(ButtonsStorage.ButtonDeleteCardInMenuChooseSpecificCard.getCallBackData())) {
-            message.setText("Кнопка удалить карту");
+            Card card = (Card) transmittedData.getDataStorage().get(SystemStringsStorage.DataStorageCurrentCard);
+
+            message.setText(DialogStringsStorage.createMenuApproveDeleteSpecificCard(card.getPaymentSystem().getName(), card.getNumber()));
+            message.setReplyMarkup(InlineKeyboardsMarkupStorage.getInlineKeyboardMarkupMenuApproveDeleteSpecificCard());
+
+            transmittedData.setState(State.WaitingClickOnInlineButtonInMenuApproveDeleteSpecificCard);
+
             return message;
         } else if (callBackData.equals(ButtonsStorage.ButtonBackInMenuChooseSpecificCard.getCallBackData())) {
             message.setText("Кнопка назад");
@@ -87,4 +93,34 @@ public class MenuPointMyCardsService {
         return message;
     }
 
+    public SendMessage processClickOnInlineButtonInMenuApproveDeleteSpecificCard(String callBackData, TransmittedData transmittedData) throws Exception {
+
+        SendMessage message = new SendMessage();
+        message.setChatId(transmittedData.getChatId());
+
+        if (callBackData.equals(ButtonsStorage.ButtonMenuApproveDeleteSpecificCardYes.getCallBackData())) {
+
+            Card card = (Card) transmittedData.getDataStorage().get(SystemStringsStorage.DataStorageCurrentCard);
+            DbManager.getInstance().getTableCards().deleteByCardId(card.getId());
+
+            message.setText(DialogStringsStorage.ActionApproveDeleteSpecificCardYes);
+
+            transmittedData.setState(State.WaitingCommandStart);
+
+            return message;
+        } else if (callBackData.equals(ButtonsStorage.ButtonMenuApproveDeleteSpecificCardNo.getCallBackData())) {
+
+            message.setText(DialogStringsStorage.ActionApproveDeleteSpecificCardNo);
+
+            transmittedData.setState(State.WaitingCommandStart);
+
+            return message;
+        }
+
+        throw new Exception("ввели хуйню");
+    }
+
 }
+
+
+

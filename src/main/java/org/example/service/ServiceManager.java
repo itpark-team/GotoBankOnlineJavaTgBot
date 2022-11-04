@@ -27,6 +27,7 @@ public class ServiceManager {
         methods.put(State.WaitingClickOnInlineButtonInMenuMyCards, menuPointMyCardsService::processClickOnInlineButtonInMenuMyCards);
         methods.put(State.WaitingClickOnInlineButtonInMenuChooseSpecificCard, menuPointMyCardsService::processClickOnInlineButtonInMenuChooseSpecificCard);
         methods.put(State.WaitingInputIncomeMoneyForSpecificCard, menuPointMyCardsService::processInputIncomeMoneyForSpecificCard);
+        methods.put(State.WaitingClickOnInlineButtonInMenuApproveDeleteSpecificCard, menuPointMyCardsService::processClickOnInlineButtonInMenuApproveDeleteSpecificCard);
     }
 
     public SendMessage processUpdate(String textData, TransmittedData transmittedData) throws Exception {
