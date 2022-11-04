@@ -139,5 +139,32 @@ public class InlineKeyboardsMarkupStorage {
         return replyKeyboardMarkup;
     }
 
+    public static InlineKeyboardMarkup getInlineKeyboardMarkupMenuApproveDeleteSpecificCard() {
+
+        List<List<InlineKeyboardButton>> keyboard = new ArrayList<>();
+
+        List<InlineKeyboardButton> row;
+        InlineKeyboardButton button;
+
+        row = new ArrayList<>();
+        button = new InlineKeyboardButton();
+        button.setText(ButtonsStorage.ButtonMenuApproveDeleteSpecificCardYes.getName());
+        button.setCallbackData(ButtonsStorage.ButtonMenuApproveDeleteSpecificCardYes.getCallBackData());
+        row.add(button);
+        keyboard.add(row);
+
+        row = new ArrayList<>();
+        button = new InlineKeyboardButton();
+        button.setText(ButtonsStorage.ButtonMenuApproveDeleteSpecificCardNo.getName());
+        button.setCallbackData(ButtonsStorage.ButtonMenuApproveDeleteSpecificCardNo.getCallBackData());
+        row.add(button);
+        keyboard.add(row);
+
+        InlineKeyboardMarkup replyKeyboardMarkup = new InlineKeyboardMarkup();
+        replyKeyboardMarkup.setKeyboard(keyboard);
+        return replyKeyboardMarkup;
+    }
+
+
 
 }
