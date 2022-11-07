@@ -12,7 +12,7 @@ public class SharedService {
         SendMessage message = new SendMessage();
         message.setChatId(transmittedData.getChatId());
         message.setText(DialogStringsStorage.CommandStartOK);
-        message.setReplyMarkup(InlineKeyboardsMarkupStorage.getInlineKeyboardMarkupMenuMain());
+        message.setReplyMarkup(InlineKeyboardsMarkupStorage.getMenuMain());
 
         transmittedData.getDataStorage().clear();
         transmittedData.setState(State.WaitingClickOnInlineButtonInMenuMain);

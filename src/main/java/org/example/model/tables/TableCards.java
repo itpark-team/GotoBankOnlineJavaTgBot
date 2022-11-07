@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class TableCards {
     private Connection connection;
@@ -20,7 +21,7 @@ public class TableCards {
     public void addNew(Card card) throws SQLException {
         Statement statement = connection.createStatement();
 
-        String insertQuery = String.format("INSERT INTO cards (chat_id, balance, number, payment_system_id) VALUES (%d,%f,%d,%d)", card.getChatId(), card.getBalance(), card.getNumber(), card.getPaymentSystemId());
+        String insertQuery = String.format(Locale.ENGLISH,"INSERT INTO cards (chat_id, balance, number, payment_system_id) VALUES (%d,%.2f,%d,%d)", card.getChatId(), card.getBalance(), card.getNumber(), card.getPaymentSystemId());
 
         statement.executeUpdate(insertQuery);
 
@@ -106,9 +107,8 @@ public class TableCards {
 
     public void depositMoneyToBalanceByCardId(int cardId, BigDecimal money) throws SQLException {
         Statement statement = connection.createStatement();
-        String updateQuery = String.format("UPDATE cards set balance = balance + %.2f WHERE id = %d", money, cardId);
+        String updateQuery = String.format(Locale.ENGLISH,"UPDATE cards set balance = balance + %.2f WHERE id = %d", money, cardId);
 
-        updateQuery = updateQuery.replace(',', '.');
         statement.executeUpdate(updateQuery);
         statement.close();
     }

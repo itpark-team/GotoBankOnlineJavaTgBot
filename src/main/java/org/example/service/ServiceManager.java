@@ -28,6 +28,8 @@ public class ServiceManager {
         methods.put(State.WaitingClickOnInlineButtonInMenuChooseSpecificCard, menuPointMyCardsService::processClickOnInlineButtonInMenuChooseSpecificCard);
         methods.put(State.WaitingInputIncomeMoneyForSpecificCard, menuPointMyCardsService::processInputIncomeMoneyForSpecificCard);
         methods.put(State.WaitingClickOnInlineButtonInMenuApproveDeleteSpecificCard, menuPointMyCardsService::processClickOnInlineButtonInMenuApproveDeleteSpecificCard);
+        methods.put(State.WaitingClickOnInlineButtonInMenuChoosePaySystemForNewCard,menuPointMyCardsService::processClickOnInlineButtonInMenuChoosePaySystemForNewCard);
+
     }
 
     public SendMessage processUpdate(String textData, TransmittedData transmittedData) throws Exception {

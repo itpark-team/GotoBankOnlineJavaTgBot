@@ -1,6 +1,7 @@
 package org.example.util;
 
 import org.example.model.entities.Card;
+import org.example.model.entities.PaymentSystem;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 
@@ -8,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InlineKeyboardsMarkupStorage {
-    public static InlineKeyboardMarkup getInlineKeyboardMarkupMenuMain() {
+    public static InlineKeyboardMarkup getMenuMain() {
         List<List<InlineKeyboardButton>> keyboard = new ArrayList<>();
 
         List<InlineKeyboardButton> row;
@@ -41,7 +42,7 @@ public class InlineKeyboardsMarkupStorage {
         return replyKeyboardMarkup;
     }
 
-    public static InlineKeyboardMarkup getInlineKeyboardMarkupMenuMyCardsNoCards() {
+    public static InlineKeyboardMarkup getMenuMyCardsNoCards() {
 
         List<List<InlineKeyboardButton>> keyboard = new ArrayList<>();
 
@@ -69,7 +70,7 @@ public class InlineKeyboardsMarkupStorage {
 
     }
 
-    public static InlineKeyboardMarkup createInlineKeyboardMarkupMenuMyCardsHasCards(List<Card> cards) {
+    public static InlineKeyboardMarkup createMenuMyCardsHasCards(List<Card> cards) {
 
         List<List<InlineKeyboardButton>> keyboard = new ArrayList<>();
 
@@ -106,7 +107,7 @@ public class InlineKeyboardsMarkupStorage {
 
     }
 
-    public static InlineKeyboardMarkup getInlineKeyboardMarkupMenuChooseSpecificCard() {
+    public static InlineKeyboardMarkup getMenuChooseSpecificCard() {
 
         List<List<InlineKeyboardButton>> keyboard = new ArrayList<>();
 
@@ -139,7 +140,7 @@ public class InlineKeyboardsMarkupStorage {
         return replyKeyboardMarkup;
     }
 
-    public static InlineKeyboardMarkup getInlineKeyboardMarkupMenuApproveDeleteSpecificCard() {
+    public static InlineKeyboardMarkup getMenuApproveDeleteSpecificCard() {
 
         List<List<InlineKeyboardButton>> keyboard = new ArrayList<>();
 
@@ -165,6 +166,28 @@ public class InlineKeyboardsMarkupStorage {
         return replyKeyboardMarkup;
     }
 
+    public static InlineKeyboardMarkup createMenuChoosePaySystemForNewCard(List<PaymentSystem> paymentSystems) {
+
+        List<List<InlineKeyboardButton>> keyboard = new ArrayList<>();
+
+        List<InlineKeyboardButton> row;
+        InlineKeyboardButton button;
+
+        for (int i = 0; i < paymentSystems.size(); i++) {
+            row = new ArrayList<>();
+            button = new InlineKeyboardButton();
+            button.setText(paymentSystems.get(i).getName());
+            button.setCallbackData(SystemStringsStorage.CallbackPaymentSystemsId + paymentSystems.get(i).getId());
+            row.add(button);
+            keyboard.add(row);
+        }
+
+        InlineKeyboardMarkup replyKeyboardMarkup = new InlineKeyboardMarkup();
+        replyKeyboardMarkup.setKeyboard(keyboard);
+
+        return replyKeyboardMarkup;
+
+    }
 
 
 }

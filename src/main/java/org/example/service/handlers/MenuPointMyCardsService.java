@@ -9,6 +9,7 @@ import org.example.util.*;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 public class MenuPointMyCardsService {
 
@@ -19,7 +20,16 @@ public class MenuPointMyCardsService {
         if (callBackData.equals(ButtonsStorage.ButtonBackInMenuMyCard.getCallBackData())) {
             return SharedService.goToProcessClickOnInlineButtonInMenuMyCards(transmittedData);
         } else if (callBackData.equals(ButtonsStorage.ButtonAddNewCardInMenuMyCard.getCallBackData())) {
-            throw new Exception("ввели хуйню");
+
+            List<PaymentSystem> paymentSystemList = DbManager.getInstance().getTablePaymentSystems().getAll();
+
+            message.setText(DialogStringsStorage.ActionMenuChoosePaySystemForNewCard);
+            message.setReplyMarkup(InlineKeyboardsMarkupStorage.createMenuChoosePaySystemForNewCard(paymentSystemList));
+
+            transmittedData.setState(State.WaitingClickOnInlineButtonInMenuChoosePaySystemForNewCard);
+
+            return message;
+
         } else if (callBackData.startsWith(SystemStringsStorage.CallbackCardId)) {
             callBackData = callBackData.replace(SystemStringsStorage.CallbackCardId, "");
             int cardId = Integer.parseInt(callBackData);
@@ -31,7 +41,7 @@ public class MenuPointMyCardsService {
             transmittedData.getDataStorage().add(SystemStringsStorage.DataStorageCurrentCard, card);
 
             message.setText(DialogStringsStorage.createMenuChooseSpecificCard(card.getPaymentSystem().getName(), card.getNumber(), card.getBalance()));
-            message.setReplyMarkup(InlineKeyboardsMarkupStorage.getInlineKeyboardMarkupMenuChooseSpecificCard());
+            message.setReplyMarkup(InlineKeyboardsMarkupStorage.getMenuChooseSpecificCard());
 
             transmittedData.setState(State.WaitingClickOnInlineButtonInMenuChooseSpecificCard);
             return message;
@@ -53,7 +63,7 @@ public class MenuPointMyCardsService {
             Card card = (Card) transmittedData.getDataStorage().get(SystemStringsStorage.DataStorageCurrentCard);
 
             message.setText(DialogStringsStorage.createMenuApproveDeleteSpecificCard(card.getPaymentSystem().getName(), card.getNumber()));
-            message.setReplyMarkup(InlineKeyboardsMarkupStorage.getInlineKeyboardMarkupMenuApproveDeleteSpecificCard());
+            message.setReplyMarkup(InlineKeyboardsMarkupStorage.getMenuApproveDeleteSpecificCard());
 
             transmittedData.setState(State.WaitingClickOnInlineButtonInMenuApproveDeleteSpecificCard);
 
@@ -120,6 +130,32 @@ public class MenuPointMyCardsService {
         throw new Exception("ввели хуйню");
     }
 
+    public SendMessage processClickOnInlineButtonInMenuChoosePaySystemForNewCard(String callBackData, TransmittedData transmittedData) throws Exception {
+        SendMessage message = new SendMessage();
+        message.setChatId(transmittedData.getChatId());
+
+        if (callBackData.startsWith(SystemStringsStorage.CallbackPaymentSystemsId)) {
+            callBackData = callBackData.replace(SystemStringsStorage.CallbackPaymentSystemsId, "");
+            int paymentSystemId = Integer.parseInt(callBackData);
+            PaymentSystem paymentSystem = DbManager.getInstance().getTablePaymentSystems().getById(paymentSystemId);
+
+            long cardNumber = 0L;
+            do {
+                cardNumber = (long) (Math.random() * 10000000000000000L);
+            } while (DbManager.getInstance().getTableCards().hasCardWithNumber(cardNumber));
+
+            Card card = new Card(0, transmittedData.getChatId(), Constants.DefaultNewCardBalance, cardNumber, paymentSystemId);
+
+            DbManager.getInstance().getTableCards().addNew(card);
+
+            message.setText(DialogStringsStorage.createMenuChoosePaySystemForNewCard(paymentSystem.getName(), cardNumber));
+
+            transmittedData.setState(State.WaitingCommandStart);
+            return message;
+        }
+
+        throw new Exception("ввели хуйню");
+    }
 }
 
 

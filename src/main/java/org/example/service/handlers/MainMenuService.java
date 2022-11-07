@@ -36,7 +36,7 @@ public class MainMenuService {
 
             if (cards.size() == 0) {
                 message.setText(DialogStringsStorage.MenuMyCardsText + "\n" + DialogStringsStorage.MenuMyCardsNoCardsText);
-                message.setReplyMarkup(InlineKeyboardsMarkupStorage.getInlineKeyboardMarkupMenuMyCardsNoCards());
+                message.setReplyMarkup(InlineKeyboardsMarkupStorage.getMenuMyCardsNoCards());
             } else {
                 List<PaymentSystem> paymentSystems = DbManager.getInstance().getTablePaymentSystems().getAll();
                 cards.stream().forEach(
@@ -47,7 +47,7 @@ public class MainMenuService {
                 );
 
                 message.setText(DialogStringsStorage.MenuMyCardsText);
-                message.setReplyMarkup(InlineKeyboardsMarkupStorage.createInlineKeyboardMarkupMenuMyCardsHasCards(cards));
+                message.setReplyMarkup(InlineKeyboardsMarkupStorage.createMenuMyCardsHasCards(cards));
             }
 
             transmittedData.setState(State.WaitingClickOnInlineButtonInMenuMyCards);
