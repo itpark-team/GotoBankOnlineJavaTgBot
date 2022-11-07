@@ -1,4 +1,4 @@
-package org.example.service.handlers;
+package org.example.service.menupoints;
 
 import org.example.statemachine.State;
 import org.example.statemachine.TransmittedData;
@@ -12,10 +12,10 @@ public class SharedService {
         SendMessage message = new SendMessage();
         message.setChatId(transmittedData.getChatId());
         message.setText(DialogStringsStorage.CommandStartOK);
-        message.setReplyMarkup(InlineKeyboardsMarkupStorage.getInlineKeyboardMarkupMenuMain());
+        message.setReplyMarkup(InlineKeyboardsMarkupStorage.getMenuMain());
 
         transmittedData.getDataStorage().clear();
-        transmittedData.setState(State.WaitingClickOnInlineButtonInMenuMain);
+        transmittedData.setState(State.WaitingClickInMenuMain);
         return message;
     }
 }

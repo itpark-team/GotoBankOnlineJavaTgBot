@@ -2,13 +2,13 @@ package org.example.statemachine;
 
 public enum State {
     WaitingCommandStart,
-    WaitingClickOnInlineButtonInMenuMain,
-    WaitingClickOnInlineButtonInMenuMyCards,
-    WaitingClickOnInlineButtonInMenuChooseSpecificCard,
+    WaitingClickInMenuMain,
+    WaitingClickInMenuMyCards,
+    WaitingClickInMenuChooseSpecificCard,
     WaitingInputIncomeMoneyForSpecificCard,
-    WaitingClickOnInlineButtonInMenuChoosePaySystemForNewCard,
-    WaitingClickOnInlineButtonInMenuApproveDeleteSpecificCard,
-    WaitingInputNumberCardFromForTransaction,
+    WaitingClickInMenuChoosePaySystemForNewCard,
+    WaitingClickInMenuApproveDeleteSpecificCard,
+    WaitingClickNumberCardFromForTransaction,
     WaitingInputNumberCardToForTransaction,
     WaitingInputMoneyForTransaction,
     WaitingClickOnInlineButtonInMenuInstruction

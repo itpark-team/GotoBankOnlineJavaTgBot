@@ -10,6 +10,9 @@ public class DialogStringsStorage {
     public final static String MenuMyCardsText = "Выберите действие:";
     public final static String MenuMyCardsNoCardsText = "В Вашем списке еще нет карт! Создайте новую карту.";
 
+    public final static String MenuTransactionsNoCardsText = "В Вашем списке еще нет карт! Создайте новую карту.";
+    public final static String MenuTransactionsExistCardsText = "Выберите карту, с которой вы хотите перевести деньги";
+
     public static String createMenuChooseSpecificCard(String paymentSystemName, long number, BigDecimal balance) {
 
         return String.format("Выбрана карта\n%s %d\nБаланс: %.2f\n\nВыберите действие с картой", paymentSystemName, number, balance);
@@ -17,17 +20,42 @@ public class DialogStringsStorage {
 
     public final static String ActionIncomeMoneyForSpecificCard = "Введите сумму пополнения (от 1 до 150000)";
 
-    public final static String  ActionIncomeMoneyForSpecificCardFailInput = "Вы ввели некоректное значение";
-    public final static String  ActionIncomeMoneyForSpecificCardOutOfRange = "Пожалуйста введите сумму от 1 до 150000";
-    public final static String  ActionIncomeMoneyForSpecificCardOk = "Баланс успешно пополнен. Введите /start для возврата в меню";
+    public final static String ActionIncomeMoneyForSpecificCardFailInput = "Вы ввели некоректное значение";
+    public final static String ActionIncomeMoneyForSpecificCardOutOfRange = "Пожалуйста введите сумму от 1 до 150000";
+    public final static String ActionIncomeMoneyForSpecificCardOk = "Баланс успешно пополнен. Введите /start для возврата в меню";
 
     public static String createMenuApproveDeleteSpecificCard(String paymentSystemName, long number) {
 
         return String.format("Вы действительно хотите удалить карту?\n%s %d", paymentSystemName, number);
     }
 
-    public final static String  ActionApproveDeleteSpecificCardYes = "Карта успешно удалена. Введите /start для возврата в меню";
-    public final static String  ActionApproveDeleteSpecificCardNo = "Вы отменили удаление. Введите /start для возврата в меню";
+    public final static String ActionApproveDeleteSpecificCardYes = "Карта успешно удалена. Введите /start для возврата в меню";
+    public final static String ActionApproveDeleteSpecificCardNo = "Вы отменили удаление. Введите /start для возврата в меню";
+
+    public final static String ActionMenuChoosePaySystemForNewCard = "Выберите платёжную систему для карты";
 
 
+    public static String createMenuChoosePaySystemForNewCard(String paymentSystemName, long number) {
+
+        return String.format("Ваша новая карта успешно создана\n%s %d\nвведите /start для возврата в главное меню", paymentSystemName, number);
+    }
+
+    public final static String createInputNumberCardToForTransaction(String paymentSystemName, long number, BigDecimal balance) {
+        return String.format("Вы выбрали карту %s %d ₽%.2f\nВведите номер карты куда вы будете переводить деньги", paymentSystemName, number, balance);
+    }
+
+    public final static String ActionIncomeNumberCardToForTransactionFailInput = "Вы ввели некоректное значение номера карты";
+    public final static String ActionIncomeNumberCardToForTransactionNoCard = "Карты с таким номером в системе не существует";
+
+    public final static String ActionInputMoneyForTransaction = "Номер карты введён успешно\nТеперь введите количество денег, которое вы хотите перевести";
+
+    public final static String ActionIncomeMoneyForTransactionFailInput = "Вы ввели некоректное значение";
+
+    public final static String createIncomeMoneyForTransactionOutOfRange(BigDecimal maxMoney) {
+        return String.format("Пожалуйста введите сумму от 0 до %.2f", maxMoney);
+    }
+
+    public final static String createInputMoneyForTransactionOk(String paymentSystemName, long number, BigDecimal balance) {
+        return String.format("Деньги успешно переведены.\nТекущий баланс карты %s %d ₽%.2f\nВведите /start для возврата в меню", paymentSystemName, number, balance);
+    }
 }

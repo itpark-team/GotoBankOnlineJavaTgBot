@@ -12,7 +12,7 @@ public class BotInitializer extends TelegramLongPollingBot {
 
     private ChatRouter chatRouter;
 
-    public BotInitializer() {
+    public BotInitializer() throws Exception {
         chatRouter = new ChatRouter();
     }
 

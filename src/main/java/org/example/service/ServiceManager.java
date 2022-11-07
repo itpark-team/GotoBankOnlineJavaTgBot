@@ -1,8 +1,8 @@
 package org.example.service;
 
-import org.example.service.handlers.MenuPointMyCardsService;
-import org.example.service.handlers.SharedService;
-import org.example.service.handlers.MainMenuService;
+import org.example.service.menupoints.MyCardsService;
+import org.example.service.menupoints.MainMenuService;
+import org.example.service.menupoints.TransactionsService;
 import org.example.statemachine.State;
 import org.example.statemachine.TransmittedData;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -14,20 +14,30 @@ public class ServiceManager {
     private final Map<State, Service> methods;
 
     private final MainMenuService mainMenuService;
-    private final MenuPointMyCardsService menuPointMyCardsService;
+    private final MyCardsService myCardsService;
+    private final TransactionsService transactionsService;
 
-    public ServiceManager() {
+
+    public ServiceManager() throws Exception {
         methods = new HashMap<>();
 
         mainMenuService = new MainMenuService();
-        menuPointMyCardsService = new MenuPointMyCardsService();
+        myCardsService = new MyCardsService();
+        transactionsService = new TransactionsService();
 
         methods.put(State.WaitingCommandStart, mainMenuService::processCommandStart);
-        methods.put(State.WaitingClickOnInlineButtonInMenuMain, mainMenuService::processClickOnInlineButtonInMenuMain);
-        methods.put(State.WaitingClickOnInlineButtonInMenuMyCards, menuPointMyCardsService::processClickOnInlineButtonInMenuMyCards);
-        methods.put(State.WaitingClickOnInlineButtonInMenuChooseSpecificCard, menuPointMyCardsService::processClickOnInlineButtonInMenuChooseSpecificCard);
-        methods.put(State.WaitingInputIncomeMoneyForSpecificCard, menuPointMyCardsService::processInputIncomeMoneyForSpecificCard);
-        methods.put(State.WaitingClickOnInlineButtonInMenuApproveDeleteSpecificCard, menuPointMyCardsService::processClickOnInlineButtonInMenuApproveDeleteSpecificCard);
+        methods.put(State.WaitingClickInMenuMain, mainMenuService::processClickInMenuMain);
+
+        methods.put(State.WaitingClickInMenuMyCards, myCardsService::processClickInMenuMyCards);
+        methods.put(State.WaitingClickInMenuChooseSpecificCard, myCardsService::processClickInMenuChooseSpecificCard);
+        methods.put(State.WaitingInputIncomeMoneyForSpecificCard, myCardsService::processInputIncomeMoneyForSpecificCard);
+        methods.put(State.WaitingClickInMenuApproveDeleteSpecificCard, myCardsService::processClickInMenuApproveDeleteSpecificCard);
+        methods.put(State.WaitingClickInMenuChoosePaySystemForNewCard, myCardsService::processClickInMenuChoosePaySystemForNewCard);
+
+        methods.put(State.WaitingClickNumberCardFromForTransaction,transactionsService::processClickNumberCardFromForTransaction);
+        methods.put(State.WaitingInputNumberCardToForTransaction,transactionsService::processInputNumberCardToForTransaction);
+        methods.put(State.WaitingInputMoneyForTransaction,transactionsService::processInputMoneyForTransaction);
+
     }
 
     public SendMessage processUpdate(String textData, TransmittedData transmittedData) throws Exception {

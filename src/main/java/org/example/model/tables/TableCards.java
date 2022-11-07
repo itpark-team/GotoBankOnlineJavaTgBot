@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class TableCards {
     private Connection connection;
@@ -20,7 +21,7 @@ public class TableCards {
     public void addNew(Card card) throws SQLException {
         Statement statement = connection.createStatement();
 
-        String insertQuery = String.format("INSERT INTO cards (chat_id, balance, number, payment_system_id) VALUES (%d,%f,%d,%d)", card.getChatId(), card.getBalance(), card.getNumber(), card.getPaymentSystemId());
+        String insertQuery = String.format(Locale.ENGLISH,"INSERT INTO cards (chat_id, balance, number, payment_system_id) VALUES (%d,%.2f,%d,%d)", card.getChatId(), card.getBalance(), card.getNumber(), card.getPaymentSystemId());
 
         statement.executeUpdate(insertQuery);
 
@@ -33,6 +34,32 @@ public class TableCards {
         Statement statement = connection.createStatement();
 
         String selectQuery = String.format("SELECT * FROM cards WHERE id = %d ORDER BY id ASC", cardId);
+
+        ResultSet resultSet = statement.executeQuery(selectQuery);
+
+        resultSet.next();
+
+        int id = resultSet.getInt("id");
+        long chatId = resultSet.getLong("chat_id");
+        BigDecimal balance = resultSet.getBigDecimal("balance");
+        long number = resultSet.getLong("number");
+        int paymentSystemId = resultSet.getInt("payment_system_id");
+
+        card = new Card(id, chatId, balance, number, paymentSystemId);
+
+        resultSet.close();
+
+        statement.close();
+
+        return card;
+    }
+
+    public Card getByNumber(long findNumber) throws SQLException {
+        Card card = null;
+
+        Statement statement = connection.createStatement();
+
+        String selectQuery = String.format("SELECT * FROM cards WHERE number = %d", findNumber);
 
         ResultSet resultSet = statement.executeQuery(selectQuery);
 
@@ -106,17 +133,15 @@ public class TableCards {
 
     public void depositMoneyToBalanceByCardId(int cardId, BigDecimal money) throws SQLException {
         Statement statement = connection.createStatement();
-        String updateQuery = String.format("UPDATE cards set balance = balance + %.2f WHERE id = %d", money, cardId);
+        String updateQuery = String.format(Locale.ENGLISH,"UPDATE cards set balance = balance + %.2f WHERE id = %d", money, cardId);
 
-        updateQuery = updateQuery.replace(',', '.');
         statement.executeUpdate(updateQuery);
         statement.close();
     }
 
     public void takeOffMoneyFromBalanceByCardId(int cardId, BigDecimal money) throws SQLException {
         Statement statement = connection.createStatement();
-        String updateQuery = String.format("UPDATE cards set balance = balance + %.2f WHERE id = %d", money, cardId);
-        updateQuery = updateQuery.replace(',', '.');
+        String updateQuery = String.format(Locale.ENGLISH,"UPDATE cards set balance = balance - %.2f WHERE id = %d", money, cardId);
 
         statement.executeUpdate(updateQuery);
         statement.close();
