@@ -1,7 +1,7 @@
 package org.example.statemachine;
 
 import org.example.service.ServiceManager;
-import org.example.service.handlers.SharedService;
+import org.example.service.menupoints.SharedService;
 import org.example.util.SystemStringsStorage;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 
@@ -12,7 +12,7 @@ public class ChatRouter {
     private Map<Long, TransmittedData> chats;
     private ServiceManager serviceManager;
 
-    public ChatRouter() {
+    public ChatRouter() throws Exception {
         chats = new HashMap<>();
         serviceManager = new ServiceManager();
     }

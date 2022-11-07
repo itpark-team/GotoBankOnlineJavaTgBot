@@ -32,7 +32,7 @@ public class InlineKeyboardsMarkupStorage {
         row = new ArrayList<>();
         button = new InlineKeyboardButton();
         button.setText(ButtonsStorage.ButtonInstructionInMenuMain.getName());
-        button.setCallbackData(ButtonsStorage.ButtonInstructionInMenuMain.getCallBackData());
+        button.setUrl("https://docs.google.com/document/d/1FhUwceal_RMtM636MUQ08QFYppJj5VDz0pMdTZ65zRw/edit?usp=sharing");
         row.add(button);
         keyboard.add(row);
 
@@ -189,5 +189,27 @@ public class InlineKeyboardsMarkupStorage {
 
     }
 
+    public static InlineKeyboardMarkup createMenuTransactionsHasCards(List<Card> cards) {
+
+        List<List<InlineKeyboardButton>> keyboard = new ArrayList<>();
+
+        List<InlineKeyboardButton> row;
+        InlineKeyboardButton button;
+
+        for (int i = 0; i < cards.size(); i++) {
+            row = new ArrayList<>();
+            button = new InlineKeyboardButton();
+            button.setText(cards.get(i).getPaymentSystem().getName() + " " + cards.get(i).getNumber() + "\t₽" + cards.get(i).getBalance());
+            button.setCallbackData(SystemStringsStorage.CallbackCardId + cards.get(i).getId());
+            row.add(button);
+            keyboard.add(row);
+        }
+
+        InlineKeyboardMarkup replyKeyboardMarkup = new InlineKeyboardMarkup();
+        replyKeyboardMarkup.setKeyboard(keyboard);
+
+        return replyKeyboardMarkup;
+
+    }
 
 }

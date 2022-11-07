@@ -13,6 +13,9 @@ public class SystemStringsStorage {
     public final static String CallbackCardId = "CallbackCardId";
     public final static String CallbackPaymentSystemsId = "CallbackPaymentSystemsId";
 
+    public final static String DataStorageCardIdFrom = "DataStorageCardIdFrom";
+    public final static String DataStorageCardIdTo = "DataStorageCardIdTo";
+
 
 
 

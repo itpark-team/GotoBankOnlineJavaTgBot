@@ -1,4 +1,4 @@
-package org.example.service.handlers;
+package org.example.service.menupoints;
 
 import org.example.statemachine.State;
 import org.example.statemachine.TransmittedData;
@@ -15,7 +15,7 @@ public class SharedService {
         message.setReplyMarkup(InlineKeyboardsMarkupStorage.getMenuMain());
 
         transmittedData.getDataStorage().clear();
-        transmittedData.setState(State.WaitingClickOnInlineButtonInMenuMain);
+        transmittedData.setState(State.WaitingClickInMenuMain);
         return message;
     }
 }

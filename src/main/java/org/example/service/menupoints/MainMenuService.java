@@ -1,4 +1,4 @@
-package org.example.service.handlers;
+package org.example.service.menupoints;
 
 import org.example.model.DbManager;
 import org.example.model.entities.Card;
@@ -14,6 +14,12 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import java.util.List;
 
 public class MainMenuService {
+    private DbManager dbManager;
+
+    public MainMenuService() throws Exception {
+        dbManager = DbManager.getInstance();
+    }
+
     public SendMessage processCommandStart(String command, TransmittedData transmittedData) {
         SendMessage message = new SendMessage();
         message.setChatId(transmittedData.getChatId());
@@ -26,19 +32,19 @@ public class MainMenuService {
         return SharedService.goToProcessClickOnInlineButtonInMenuMyCards(transmittedData);
     }
 
-    public SendMessage processClickOnInlineButtonInMenuMain(String callBackData, TransmittedData transmittedData) throws Exception {
+    public SendMessage processClickInMenuMain(String callBackData, TransmittedData transmittedData) throws Exception {
         SendMessage message = new SendMessage();
         message.setChatId(transmittedData.getChatId());
 
         if (callBackData.equals(ButtonsStorage.ButtonMyCardsInMenuMain.getCallBackData())) {
 
-            List<Card> cards = DbManager.getInstance().getTableCards().getAllByChatId(transmittedData.getChatId());
+            List<Card> cards = dbManager.getTableCards().getAllByChatId(transmittedData.getChatId());
 
             if (cards.size() == 0) {
                 message.setText(DialogStringsStorage.MenuMyCardsText + "\n" + DialogStringsStorage.MenuMyCardsNoCardsText);
                 message.setReplyMarkup(InlineKeyboardsMarkupStorage.getMenuMyCardsNoCards());
             } else {
-                List<PaymentSystem> paymentSystems = DbManager.getInstance().getTablePaymentSystems().getAll();
+                List<PaymentSystem> paymentSystems = dbManager.getTablePaymentSystems().getAll();
                 cards.stream().forEach(
                         card -> card.setPaymentSystem(
                                 paymentSystems.stream()
@@ -50,13 +56,29 @@ public class MainMenuService {
                 message.setReplyMarkup(InlineKeyboardsMarkupStorage.createMenuMyCardsHasCards(cards));
             }
 
-            transmittedData.setState(State.WaitingClickOnInlineButtonInMenuMyCards);
+            transmittedData.setState(State.WaitingClickInMenuMyCards);
             return message;
         } else if (callBackData.equals(ButtonsStorage.ButtonTransferMoneyInMenuMain.getCallBackData())) {
-            message.setText("нажали на перевод денег");
-            return message;
-        } else if (callBackData.equals(ButtonsStorage.ButtonInstructionInMenuMain.getCallBackData())) {
-            message.setText("нажали на инструкцию");
+
+            List<Card> cards = dbManager.getTableCards().getAllByChatId(transmittedData.getChatId());
+
+            if (cards.size() == 0) {
+                message.setText(DialogStringsStorage.MenuTransactionsNoCardsText);
+            } else {
+                List<PaymentSystem> paymentSystems = dbManager.getTablePaymentSystems().getAll();
+                cards.stream().forEach(
+                        card -> card.setPaymentSystem(
+                                paymentSystems.stream()
+                                        .filter(paymentSystem -> paymentSystem.getId() == card.getPaymentSystemId()).findFirst().get()
+                        )
+                );
+
+                message.setText(DialogStringsStorage.MenuTransactionsExistCardsText);
+                message.setReplyMarkup(InlineKeyboardsMarkupStorage.createMenuTransactionsHasCards(cards));
+
+                transmittedData.setState(State.WaitingClickNumberCardFromForTransaction);
+            }
+
             return message;
         }
 
