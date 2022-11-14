@@ -35,11 +35,11 @@ public class TransactionsService {
 
             message.setText(DialogStringsStorage.createInputNumberCardToForTransaction(paymentSystem.getName(), card.getNumber(), card.getBalance()));
 
-            transmittedData.setState(State.WaitingInputNumberCardToForTransaction);
+            transmittedData.setState(State.InputNumberCardToForTransaction);
             return message;
         }
 
-        throw new Exception("ввели хуйню");
+        throw new Exception("Ошибка распознавания callBackData");
     }
 
     public SendMessage processInputNumberCardToForTransaction(String cardNumberAsString, TransmittedData transmittedData) throws Exception {
@@ -65,7 +65,7 @@ public class TransactionsService {
 
         message.setText(DialogStringsStorage.ActionInputMoneyForTransaction);
 
-        transmittedData.setState(State.WaitingInputMoneyForTransaction);
+        transmittedData.setState(State.InputMoneyForTransaction);
         return message;
     }
 
@@ -100,7 +100,7 @@ public class TransactionsService {
 
         message.setText(DialogStringsStorage.createInputMoneyForTransactionOk(paymentSystem.getName(),cardFromAfterTransaction.getNumber(),cardFromAfterTransaction.getBalance()));
 
-        transmittedData.setState(State.WaitingCommandStart);
+        transmittedData.setState(State.CommandStart);
         return message;
     }
 }

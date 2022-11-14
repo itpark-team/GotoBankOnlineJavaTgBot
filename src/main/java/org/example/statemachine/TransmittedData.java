@@ -8,7 +8,7 @@ public class TransmittedData {
 
     public TransmittedData(long chatId) {
         this.chatId = chatId;
-        state = State.WaitingCommandStart;
+        state = State.CommandStart;
         dataStorage = new DataStorage();
     }
 

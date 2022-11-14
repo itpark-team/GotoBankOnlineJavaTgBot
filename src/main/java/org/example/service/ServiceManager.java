@@ -25,18 +25,18 @@ public class ServiceManager {
         myCardsService = new MyCardsService();
         transactionsService = new TransactionsService();
 
-        methods.put(State.WaitingCommandStart, mainMenuService::processCommandStart);
-        methods.put(State.WaitingClickInMenuMain, mainMenuService::processClickInMenuMain);
+        methods.put(State.CommandStart, mainMenuService::processCommandStart);
+        methods.put(State.ClickInMenuMain, mainMenuService::processClickInMenuMain);
 
-        methods.put(State.WaitingClickInMenuMyCards, myCardsService::processClickInMenuMyCards);
-        methods.put(State.WaitingClickInMenuChooseSpecificCard, myCardsService::processClickInMenuChooseSpecificCard);
-        methods.put(State.WaitingInputIncomeMoneyForSpecificCard, myCardsService::processInputIncomeMoneyForSpecificCard);
-        methods.put(State.WaitingClickInMenuApproveDeleteSpecificCard, myCardsService::processClickInMenuApproveDeleteSpecificCard);
-        methods.put(State.WaitingClickInMenuChoosePaySystemForNewCard, myCardsService::processClickInMenuChoosePaySystemForNewCard);
+        methods.put(State.ClickInMenuMyCards, myCardsService::processClickInMenuMyCards);
+        methods.put(State.ClickInMenuChooseSpecificCard, myCardsService::processClickInMenuChooseSpecificCard);
+        methods.put(State.InputIncomeMoneyForSpecificCard, myCardsService::processInputIncomeMoneyForSpecificCard);
+        methods.put(State.ClickInMenuApproveDeleteSpecificCard, myCardsService::processClickInMenuApproveDeleteSpecificCard);
+        methods.put(State.ClickInMenuChoosePaySystemForNewCard, myCardsService::processClickInMenuChoosePaySystemForNewCard);
 
-        methods.put(State.WaitingClickNumberCardFromForTransaction,transactionsService::processClickNumberCardFromForTransaction);
-        methods.put(State.WaitingInputNumberCardToForTransaction,transactionsService::processInputNumberCardToForTransaction);
-        methods.put(State.WaitingInputMoneyForTransaction,transactionsService::processInputMoneyForTransaction);
+        methods.put(State.ClickNumberCardFromForTransaction,transactionsService::processClickNumberCardFromForTransaction);
+        methods.put(State.InputNumberCardToForTransaction,transactionsService::processInputNumberCardToForTransaction);
+        methods.put(State.InputMoneyForTransaction,transactionsService::processInputMoneyForTransaction);
 
     }
 

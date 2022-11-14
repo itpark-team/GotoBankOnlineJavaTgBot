@@ -1,14 +1,20 @@
 package org.example.statemachine;
 
+import org.example.bot.BotInitializer;
 import org.example.service.ServiceManager;
 import org.example.service.menupoints.SharedService;
 import org.example.util.SystemStringsStorage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class ChatRouter {
+
+    private static final Logger logger = LoggerFactory.getLogger(ChatRouter.class);
+
     private Map<Long, TransmittedData> chats;
     private ServiceManager serviceManager;
 
@@ -24,7 +30,9 @@ public class ChatRouter {
 
         TransmittedData transmittedData = chats.get(chatId);
 
-        if (textData.equals(SystemStringsStorage.CommandReset) && transmittedData.getState() != State.WaitingCommandStart) {
+        logger.info(String.format("ROUTE: %d %s", chatId, transmittedData.getState()));
+
+        if (textData.equals(SystemStringsStorage.CommandReset) && transmittedData.getState() != State.CommandStart) {
             return SharedService.goToProcessClickOnInlineButtonInMenuMyCards(transmittedData);
         }
 

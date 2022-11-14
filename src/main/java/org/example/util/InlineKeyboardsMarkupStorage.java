@@ -17,21 +17,21 @@ public class InlineKeyboardsMarkupStorage {
 
         row = new ArrayList<>();
         button = new InlineKeyboardButton();
-        button.setText(ButtonsStorage.ButtonMyCardsInMenuMain.getName());
-        button.setCallbackData(ButtonsStorage.ButtonMyCardsInMenuMain.getCallBackData());
+        button.setText(ButtonsStorage.MyCardsInMenuMain.getName());
+        button.setCallbackData(ButtonsStorage.MyCardsInMenuMain.getCallBackData());
         row.add(button);
         keyboard.add(row);
 
         row = new ArrayList<>();
         button = new InlineKeyboardButton();
-        button.setText(ButtonsStorage.ButtonTransferMoneyInMenuMain.getName());
-        button.setCallbackData(ButtonsStorage.ButtonTransferMoneyInMenuMain.getCallBackData());
+        button.setText(ButtonsStorage.TransferMoneyInMenuMain.getName());
+        button.setCallbackData(ButtonsStorage.TransferMoneyInMenuMain.getCallBackData());
         row.add(button);
         keyboard.add(row);
 
         row = new ArrayList<>();
         button = new InlineKeyboardButton();
-        button.setText(ButtonsStorage.ButtonInstructionInMenuMain.getName());
+        button.setText(ButtonsStorage.InstructionInMenuMain.getName());
         button.setUrl("https://docs.google.com/document/d/1FhUwceal_RMtM636MUQ08QFYppJj5VDz0pMdTZ65zRw/edit?usp=sharing");
         row.add(button);
         keyboard.add(row);
@@ -51,15 +51,15 @@ public class InlineKeyboardsMarkupStorage {
 
         row = new ArrayList<>();
         button = new InlineKeyboardButton();
-        button.setText(ButtonsStorage.ButtonAddNewCardInMenuMyCard.getName());
-        button.setCallbackData(ButtonsStorage.ButtonAddNewCardInMenuMyCard.getCallBackData());
+        button.setText(ButtonsStorage.AddNewCardInMenuMyCard.getName());
+        button.setCallbackData(ButtonsStorage.AddNewCardInMenuMyCard.getCallBackData());
         row.add(button);
         keyboard.add(row);
 
         row = new ArrayList<>();
         button = new InlineKeyboardButton();
-        button.setText(ButtonsStorage.ButtonBackInMenuMyCard.getName());
-        button.setCallbackData(ButtonsStorage.ButtonBackInMenuMyCard.getCallBackData());
+        button.setText(ButtonsStorage.BackInMenuMyCard.getName());
+        button.setCallbackData(ButtonsStorage.BackInMenuMyCard.getCallBackData());
         row.add(button);
         keyboard.add(row);
 
@@ -88,15 +88,15 @@ public class InlineKeyboardsMarkupStorage {
 
         row = new ArrayList<>();
         button = new InlineKeyboardButton();
-        button.setText(ButtonsStorage.ButtonAddNewCardInMenuMyCard.getName());
-        button.setCallbackData(ButtonsStorage.ButtonAddNewCardInMenuMyCard.getCallBackData());
+        button.setText(ButtonsStorage.AddNewCardInMenuMyCard.getName());
+        button.setCallbackData(ButtonsStorage.AddNewCardInMenuMyCard.getCallBackData());
         row.add(button);
         keyboard.add(row);
 
         row = new ArrayList<>();
         button = new InlineKeyboardButton();
-        button.setText(ButtonsStorage.ButtonBackInMenuMyCard.getName());
-        button.setCallbackData(ButtonsStorage.ButtonBackInMenuMyCard.getCallBackData());
+        button.setText(ButtonsStorage.BackInMenuMyCard.getName());
+        button.setCallbackData(ButtonsStorage.BackInMenuMyCard.getCallBackData());
         row.add(button);
         keyboard.add(row);
 
@@ -116,22 +116,22 @@ public class InlineKeyboardsMarkupStorage {
 
         row = new ArrayList<>();
         button = new InlineKeyboardButton();
-        button.setText(ButtonsStorage.ButtonAddMoneyToBalanceInMenuChooseSpecificCard.getName());
-        button.setCallbackData(ButtonsStorage.ButtonAddMoneyToBalanceInMenuChooseSpecificCard.getCallBackData());
+        button.setText(ButtonsStorage.AddMoneyToBalanceInMenuChooseSpecificCard.getName());
+        button.setCallbackData(ButtonsStorage.AddMoneyToBalanceInMenuChooseSpecificCard.getCallBackData());
         row.add(button);
         keyboard.add(row);
 
         row = new ArrayList<>();
         button = new InlineKeyboardButton();
-        button.setText(ButtonsStorage.ButtonDeleteCardInMenuChooseSpecificCard.getName());
-        button.setCallbackData(ButtonsStorage.ButtonDeleteCardInMenuChooseSpecificCard.getCallBackData());
+        button.setText(ButtonsStorage.DeleteCardInMenuChooseSpecificCard.getName());
+        button.setCallbackData(ButtonsStorage.DeleteCardInMenuChooseSpecificCard.getCallBackData());
         row.add(button);
         keyboard.add(row);
 
         row = new ArrayList<>();
         button = new InlineKeyboardButton();
-        button.setText(ButtonsStorage.ButtonBackInMenuChooseSpecificCard.getName());
-        button.setCallbackData(ButtonsStorage.ButtonBackInMenuChooseSpecificCard.getCallBackData());
+        button.setText(ButtonsStorage.BackInMenuChooseSpecificCard.getName());
+        button.setCallbackData(ButtonsStorage.BackInMenuChooseSpecificCard.getCallBackData());
         row.add(button);
         keyboard.add(row);
 
@@ -149,15 +149,15 @@ public class InlineKeyboardsMarkupStorage {
 
         row = new ArrayList<>();
         button = new InlineKeyboardButton();
-        button.setText(ButtonsStorage.ButtonMenuApproveDeleteSpecificCardYes.getName());
-        button.setCallbackData(ButtonsStorage.ButtonMenuApproveDeleteSpecificCardYes.getCallBackData());
+        button.setText(ButtonsStorage.MenuApproveDeleteSpecificCardYes.getName());
+        button.setCallbackData(ButtonsStorage.MenuApproveDeleteSpecificCardYes.getCallBackData());
         row.add(button);
         keyboard.add(row);
 
         row = new ArrayList<>();
         button = new InlineKeyboardButton();
-        button.setText(ButtonsStorage.ButtonMenuApproveDeleteSpecificCardNo.getName());
-        button.setCallbackData(ButtonsStorage.ButtonMenuApproveDeleteSpecificCardNo.getCallBackData());
+        button.setText(ButtonsStorage.MenuApproveDeleteSpecificCardNo.getName());
+        button.setCallbackData(ButtonsStorage.MenuApproveDeleteSpecificCardNo.getCallBackData());
         row.add(button);
         keyboard.add(row);
 

@@ -19,18 +19,18 @@ public class ButtonsStorage {
         }
     }
 
-    public final static Button ButtonMyCardsInMenuMain = new Button("Мои карты", "ButtonMyCardsInMenuMain");
-    public final static Button ButtonTransferMoneyInMenuMain = new Button("Перевести деньги", "ButtonTransferMoneyInMenuMain");
-    public final static Button ButtonInstructionInMenuMain = new Button("Инструкция", "ButtonInstructionInMenuMain");
+    public final static Button MyCardsInMenuMain = new Button("Мои карты", "ButtonMyCardsInMenuMain");
+    public final static Button TransferMoneyInMenuMain = new Button("Перевести деньги", "ButtonTransferMoneyInMenuMain");
+    public final static Button InstructionInMenuMain = new Button("Инструкция", "ButtonInstructionInMenuMain");
 
-    public final static Button ButtonAddNewCardInMenuMyCard = new Button("Добавить новую","ButtonAddNewCardInMenuMyCard");
-    public final static Button ButtonBackInMenuMyCard = new Button("Назад","ButtonBackInMenuMyCard");
+    public final static Button AddNewCardInMenuMyCard = new Button("Добавить новую","ButtonAddNewCardInMenuMyCard");
+    public final static Button BackInMenuMyCard = new Button("Назад","ButtonBackInMenuMyCard");
 
-    public final static Button ButtonAddMoneyToBalanceInMenuChooseSpecificCard = new Button("Пополнить баланс","ButtonAddMoneyToBalanceInMenuChooseSpecificCard");
-    public final static Button ButtonDeleteCardInMenuChooseSpecificCard = new Button("Удалить карту","ButtonDeleteCardInMenuChooseSpecificCard");
-    public final static Button ButtonBackInMenuChooseSpecificCard = new Button("Назад","ButtonBackInMenuChooseSpecificCard");
+    public final static Button AddMoneyToBalanceInMenuChooseSpecificCard = new Button("Пополнить баланс","ButtonAddMoneyToBalanceInMenuChooseSpecificCard");
+    public final static Button DeleteCardInMenuChooseSpecificCard = new Button("Удалить карту","ButtonDeleteCardInMenuChooseSpecificCard");
+    public final static Button BackInMenuChooseSpecificCard = new Button("Назад","ButtonBackInMenuChooseSpecificCard");
 
-    public final static Button ButtonMenuApproveDeleteSpecificCardYes = new Button("Да", "ButtonMenuApproveDeleteSpecificCardYes");
-    public final static Button ButtonMenuApproveDeleteSpecificCardNo = new Button("Нет", "ButtonMenuApproveDeleteSpecificCardNo");
+    public final static Button MenuApproveDeleteSpecificCardYes = new Button("Да", "ButtonMenuApproveDeleteSpecificCardYes");
+    public final static Button MenuApproveDeleteSpecificCardNo = new Button("Нет", "ButtonMenuApproveDeleteSpecificCardNo");
 
 }

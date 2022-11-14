@@ -36,7 +36,7 @@ public class MainMenuService {
         SendMessage message = new SendMessage();
         message.setChatId(transmittedData.getChatId());
 
-        if (callBackData.equals(ButtonsStorage.ButtonMyCardsInMenuMain.getCallBackData())) {
+        if (callBackData.equals(ButtonsStorage.MyCardsInMenuMain.getCallBackData())) {
 
             List<Card> cards = dbManager.getTableCards().getAllByChatId(transmittedData.getChatId());
 
@@ -56,9 +56,9 @@ public class MainMenuService {
                 message.setReplyMarkup(InlineKeyboardsMarkupStorage.createMenuMyCardsHasCards(cards));
             }
 
-            transmittedData.setState(State.WaitingClickInMenuMyCards);
+            transmittedData.setState(State.ClickInMenuMyCards);
             return message;
-        } else if (callBackData.equals(ButtonsStorage.ButtonTransferMoneyInMenuMain.getCallBackData())) {
+        } else if (callBackData.equals(ButtonsStorage.TransferMoneyInMenuMain.getCallBackData())) {
 
             List<Card> cards = dbManager.getTableCards().getAllByChatId(transmittedData.getChatId());
 
@@ -76,12 +76,12 @@ public class MainMenuService {
                 message.setText(DialogStringsStorage.MenuTransactionsExistCardsText);
                 message.setReplyMarkup(InlineKeyboardsMarkupStorage.createMenuTransactionsHasCards(cards));
 
-                transmittedData.setState(State.WaitingClickNumberCardFromForTransaction);
+                transmittedData.setState(State.ClickNumberCardFromForTransaction);
             }
 
             return message;
         }
 
-        throw new Exception("ввели хуйню");
+        throw new Exception("Ошибка распознавания callBackData");
     }
 }

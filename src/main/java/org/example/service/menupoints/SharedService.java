@@ -15,7 +15,7 @@ public class SharedService {
         message.setReplyMarkup(InlineKeyboardsMarkupStorage.getMenuMain());
 
         transmittedData.getDataStorage().clear();
-        transmittedData.setState(State.WaitingClickInMenuMain);
+        transmittedData.setState(State.ClickInMenuMain);
         return message;
     }
 }
