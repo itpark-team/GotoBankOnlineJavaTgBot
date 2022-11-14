@@ -11,6 +11,8 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboard;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
+import java.lang.reflect.Field;
+
 public class BotInitializer extends TelegramLongPollingBot {
 
     private static final Logger logger = LoggerFactory.getLogger(BotInitializer.class);
@@ -52,9 +54,24 @@ public class BotInitializer extends TelegramLongPollingBot {
             }
             logger.info(String.format("INPUT: %s %d:%d:%s", updateType, chatId, messageId, textData));
             SendMessage message = chatRouter.route(chatId, textData);
+
+//            var fff = message.getClass().getFields();
+//
+//            for (int i = 0; i < fff.length; i++) {
+//                System.out.println(fff[i].getName());
+//            }
+//
+//            //var keyboard = message.getReplyMarkup().getClass().getField("keyboard");
+//
+//            int a=5;
+
+            //TODO сделать вывод клавиатуры через рефлексию
+
             logger.info(String.format("OUTPUT: %d:%d:%s", chatId, messageId, message.getText()));
             execute(message);
         } catch (Exception e) {
+
+            e.printStackTrace();
 
             logger.info(String.format("ERROR: %s %d:%d:%s error=%s", updateType, chatId, messageId, textData, e.getMessage()));
 
