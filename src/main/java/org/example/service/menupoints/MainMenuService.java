@@ -1,5 +1,7 @@
 package org.example.service.menupoints;
 
+import org.example.api.CbrApiWorker;
+import org.example.api.ExchangeRate;
 import org.example.model.DbManager;
 import org.example.model.entities.Card;
 import org.example.model.entities.PaymentSystem;
@@ -58,7 +60,17 @@ public class MainMenuService {
 
             transmittedData.setState(State.ClickInMenuMyCards);
             return message;
-        } else if (callBackData.equals(ButtonsStorage.TransferMoneyInMenuMain.getCallBackData())) {
+        }
+        else if (callBackData.equals(ButtonsStorage.CurrentExchangeRateInMenuMain.getCallBackData())) {
+
+            CbrApiWorker cbrApiWorker = new CbrApiWorker();
+            ExchangeRate exchangeRate = cbrApiWorker.getCurrentExchangeRate();
+
+            message.setText(DialogStringsStorage.createCurrentExchangeRate(exchangeRate.getDateAsString(),exchangeRate.getUsd(),exchangeRate.getEur()));
+            transmittedData.setState(State.CommandStart);
+            return message;
+        }
+        else if (callBackData.equals(ButtonsStorage.TransferMoneyInMenuMain.getCallBackData())) {
 
             List<Card> cards = dbManager.getTableCards().getAllByChatId(transmittedData.getChatId());
 

@@ -21,6 +21,7 @@ public class ButtonsStorage {
 
     public final static Button MyCardsInMenuMain = new Button("Мои карты", "ButtonMyCardsInMenuMain");
     public final static Button TransferMoneyInMenuMain = new Button("Перевести деньги", "ButtonTransferMoneyInMenuMain");
+    public final static Button CurrentExchangeRateInMenuMain = new Button("Курс валют", "GetCurrentExchangeRateInMenuMain");
     public final static Button InstructionInMenuMain = new Button("Инструкция", "ButtonInstructionInMenuMain");
 
     public final static Button AddNewCardInMenuMyCard = new Button("Добавить новую","ButtonAddNewCardInMenuMyCard");

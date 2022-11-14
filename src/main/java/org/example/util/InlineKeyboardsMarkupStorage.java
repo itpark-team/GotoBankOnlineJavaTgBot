@@ -24,6 +24,13 @@ public class InlineKeyboardsMarkupStorage {
 
         row = new ArrayList<>();
         button = new InlineKeyboardButton();
+        button.setText(ButtonsStorage.CurrentExchangeRateInMenuMain.getName());
+        button.setCallbackData(ButtonsStorage.CurrentExchangeRateInMenuMain.getCallBackData());
+        row.add(button);
+        keyboard.add(row);
+
+        row = new ArrayList<>();
+        button = new InlineKeyboardButton();
         button.setText(ButtonsStorage.TransferMoneyInMenuMain.getName());
         button.setCallbackData(ButtonsStorage.TransferMoneyInMenuMain.getCallBackData());
         row.add(button);

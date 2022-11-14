@@ -58,4 +58,8 @@ public class DialogStringsStorage {
     public final static String createInputMoneyForTransactionOk(String paymentSystemName, long number, BigDecimal balance) {
         return String.format("Деньги успешно переведены.\nТекущий баланс карты %s %d ₽%.2f\nВведите /start для возврата в меню", paymentSystemName, number, balance);
     }
+
+    public final static String createCurrentExchangeRate(String currentDate, double usd, double eur) {
+        return String.format("Текущая дата %s\n1 доллар США = %.4f руб.\n1 евро = %.4f руб.\nВведите /start для возврата в меню", currentDate, usd, eur);
+    }
 }
