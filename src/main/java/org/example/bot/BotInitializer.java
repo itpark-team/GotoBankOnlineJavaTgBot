@@ -8,6 +8,7 @@ import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.updatingmessages.DeleteMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboard;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
@@ -55,19 +56,23 @@ public class BotInitializer extends TelegramLongPollingBot {
             logger.info(String.format("INPUT: %s %d:%d:%s", updateType, chatId, messageId, textData));
             SendMessage message = chatRouter.route(chatId, textData);
 
-//            var fff = message.getClass().getFields();
-//
-//            for (int i = 0; i < fff.length; i++) {
-//                System.out.println(fff[i].getName());
-//            }
-//
-//            //var keyboard = message.getReplyMarkup().getClass().getField("keyboard");
-//
-//            int a=5;
+//            Field replyMarkup = message.getClass().getDeclaredField("replyMarkup");
+//            replyMarkup.setAccessible(true);
+//            InlineKeyboardMarkup inlineKeyboardMarkup = (InlineKeyboardMarkup) replyMarkup.get(message);
 
-            //TODO сделать вывод клавиатуры через рефлексию
+            InlineKeyboardMarkup inlineKeyboardMarkup = (InlineKeyboardMarkup) message.getReplyMarkup();
 
-            logger.info(String.format("OUTPUT: %d:%d:%s", chatId, messageId, message.getText()));
+            String keyboardAsString = "Клавиатуры в данном сообщении нет";
+            if (inlineKeyboardMarkup != null) {
+                StringBuilder stringBuilder = new StringBuilder();
+
+                for (var keyboard : inlineKeyboardMarkup.getKeyboard()) {
+                    stringBuilder.append(keyboard.get(0).getText() + ";");
+                }
+
+                keyboardAsString = stringBuilder.toString();
+            }
+            logger.info(String.format("OUTPUT: %d:%d\ntext=%s\nkeyboard=%s", chatId, messageId, message.getText(), keyboardAsString));
             execute(message);
         } catch (Exception e) {
 
@@ -84,7 +89,6 @@ public class BotInitializer extends TelegramLongPollingBot {
             } catch (TelegramApiException telegramApiException) {
                 telegramApiException.printStackTrace();
             }
-
         }
     }
 }
