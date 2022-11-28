@@ -36,6 +36,9 @@ public class BotInitializer extends TelegramLongPollingBot {
 
     @Override
     public void onUpdateReceived(Update update) {
+
+        long startTime = System.currentTimeMillis();
+
         long chatId = 0;
         int messageId = 0;
         String textData = SystemStringsStorage.Empty;
@@ -56,10 +59,6 @@ public class BotInitializer extends TelegramLongPollingBot {
             logger.info(String.format("INPUT: %s %d:%d:%s", updateType, chatId, messageId, textData));
             SendMessage message = chatRouter.route(chatId, textData);
 
-//            Field replyMarkup = message.getClass().getDeclaredField("replyMarkup");
-//            replyMarkup.setAccessible(true);
-//            InlineKeyboardMarkup inlineKeyboardMarkup = (InlineKeyboardMarkup) replyMarkup.get(message);
-
             InlineKeyboardMarkup inlineKeyboardMarkup = (InlineKeyboardMarkup) message.getReplyMarkup();
 
             String keyboardAsString = "Клавиатуры в данном сообщении нет";
@@ -72,7 +71,11 @@ public class BotInitializer extends TelegramLongPollingBot {
 
                 keyboardAsString = stringBuilder.toString();
             }
-            logger.info(String.format("OUTPUT: %d:%d\ntext=%s\nkeyboard=%s", chatId, messageId, message.getText(), keyboardAsString));
+
+            long finishTime = System.currentTimeMillis();
+            long deltatime = finishTime - startTime;
+
+            logger.info(String.format("OUTPUT: %d:%d\ntext=%s\nkeyboard=%s\ndeltatime=%d", chatId, messageId, message.getText(), keyboardAsString, deltatime));
             execute(message);
         } catch (Exception e) {
 
