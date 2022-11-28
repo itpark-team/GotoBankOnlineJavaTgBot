@@ -11,9 +11,9 @@ public class Main {
     private static final Logger logger = LoggerFactory.getLogger(Main.class);
 
     public static void main(String[] args) throws Exception {
-//        TelegramBotsApi botsApi = new TelegramBotsApi(DefaultBotSession.class);
-//        botsApi.registerBot(new BotInitializer());
-//        logger.info("bot started");
+        TelegramBotsApi botsApi = new TelegramBotsApi(DefaultBotSession.class);
+        botsApi.registerBot(new BotInitializer());
+        logger.info("bot started");
     }
 
 
