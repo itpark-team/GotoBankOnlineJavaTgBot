@@ -67,7 +67,7 @@ public class BotInitializer extends TelegramLongPollingBot {
                     keyboardAsString = stringBuilder.toString();
                 }
                 logger.info(String.format("OUTPUT: %d:%d\ntext=%s\nkeyboard=%s", chatId, messageId, message.getText(), keyboardAsString));
-                execute(message);
+                bot.execute(message);
             } catch (Exception e) {
 
                 e.printStackTrace();
@@ -79,7 +79,7 @@ public class BotInitializer extends TelegramLongPollingBot {
                 message.setMessageId(messageId);
 
                 try {
-                    execute(message);
+                    bot.execute(message);
                 } catch (TelegramApiException telegramApiException) {
                     telegramApiException.printStackTrace();
                 }
