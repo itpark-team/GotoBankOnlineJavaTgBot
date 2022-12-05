@@ -11,6 +11,7 @@ import org.example.service.menupoints.MainMenuService;
 import org.example.service.menupoints.TransactionsService;
 import org.example.statemachine.State;
 import org.example.statemachine.TransmittedData;
+import org.example.util.SystemStringsStorage;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 
 import java.sql.Connection;
@@ -27,7 +28,10 @@ public class ServiceManager {
     private final DbManager dbManager;
 
     public ServiceManager() throws Exception {
-        Connection connection = new DbConnection().getConnection();
+        Connection connection = new DbConnection(
+                SystemStringsStorage.DbUrl,
+                SystemStringsStorage.DbUser,
+                SystemStringsStorage.DbPassword).getConnection();
 
         TableCards tableCards = new TableCardsImpl(connection);
         TablePaymentSystems tablePaymentSystems = new TablePaymentSystemsImpl(connection);
