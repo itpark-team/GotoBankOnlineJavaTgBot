@@ -15,8 +15,8 @@ public class MyCardsService {
     
     private DbManager dbManager;
 
-    public MyCardsService() throws Exception {
-        dbManager = DbManager.getInstance();
+    public MyCardsService(DbManager dbManager) {
+        this.dbManager = dbManager;
     }
 
     public SendMessage processClickInMenuMyCards(String callBackData, TransmittedData transmittedData) throws Exception {

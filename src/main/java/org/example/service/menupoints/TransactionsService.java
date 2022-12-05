@@ -16,8 +16,8 @@ public class TransactionsService {
 
     private DbManager dbManager;
 
-    public TransactionsService() throws Exception{
-        dbManager = DbManager.getInstance();
+    public TransactionsService(DbManager dbManager) {
+        this.dbManager = dbManager;
     }
 
     public SendMessage processClickNumberCardFromForTransaction(String callBackData, TransmittedData transmittedData) throws Exception {
