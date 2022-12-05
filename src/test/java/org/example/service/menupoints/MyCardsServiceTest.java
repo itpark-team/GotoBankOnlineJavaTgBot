@@ -15,6 +15,7 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -33,8 +34,8 @@ class MyCardsServiceTest {
 
         List<PaymentSystem> paymentSystems = new ArrayList<>();
         Collections.addAll(paymentSystems,
-                new PaymentSystem(1,"AAA"),
-                new PaymentSystem(2,"BBB"));
+                new PaymentSystem(1, "AAA"),
+                new PaymentSystem(2, "BBB"));
 
         when(tablePaymentSystems.getAll()).thenReturn(paymentSystems);
 
