@@ -15,6 +15,4 @@ public class Main {
         botsApi.registerBot(new BotInitializer());
         logger.info("bot started");
     }
-
-
 }

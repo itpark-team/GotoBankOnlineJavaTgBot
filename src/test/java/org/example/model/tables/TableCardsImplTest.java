@@ -25,15 +25,15 @@ class TableCardsImplTest {
 
         Card card = tableCards.getByCardId(6);
 
-        String expectedNumber = "9376437851174408";
-        String actualNumber = Long.toString(card.getNumber());
+        long expectedNumber = 9376437851174408l;
+        long actualNumber = card.getNumber();
 
         assertThat(expectedNumber).isEqualTo(actualNumber);
 
     }
 
     @Test
-    public void getByNumber() throws Exception {
+    public void getByNumber_findNumber309914510451073_ReturnCardWithNumber309914510451073() throws Exception {
         Connection connection = new DbConnection(
                 SystemStringsStorage.TestDbUrl,
                 SystemStringsStorage.TestDbUser,
@@ -41,12 +41,10 @@ class TableCardsImplTest {
 
         TableCardsImpl tableCards = new TableCardsImpl(connection);
 
-
         Card card = tableCards.getByNumber(309914510451073l);
 
-
-        String expectedNumber = "309914510451073";
-        String actualNumber = Long.toString(card.getNumber());
+        long expectedNumber = 309914510451073l;
+        long actualNumber = card.getNumber();
 
         assertThat(expectedNumber).isEqualTo(actualNumber);
     }

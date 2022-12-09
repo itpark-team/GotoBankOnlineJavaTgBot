@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class MainMenuServiceTest {
     @Test
-    public void processCommandStart_CommandStart_ReturnMessageWithTextCommandStartOKAndKeyboardMenuMain() {
+    public void processCommandStart_CommandStart_ReturnMessageWithTextCommandStartOK_And_KeyboardMenuMain_And_StateClickInMenuMain() {
         //подготовка
         String command = SystemStringsStorage.CommandStart;
         TransmittedData transmittedData = new TransmittedData(0);

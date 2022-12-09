@@ -28,7 +28,7 @@ import static org.mockito.Mockito.when;
 
 class MyCardsServiceTest {
     @Test
-    public void processClickInMenuMyCards_ClickToAddNewCardInMenuMyCard_ReturnMessageWithTextChoosePaySystemAndKeyboardChoosePaySystem_ForNewCard() throws Exception {
+    public void processClickInMenuMyCards_ClickToAddNewCardInMenuMyCard_ReturnMessageWithTextChoosePaySystem_And_KeyboardChoosePaySystem_And_StateClickInMenuChoosePaySystemForNewCard() throws Exception {
         //подготовка
         String callBackData = ButtonsStorage.AddNewCardInMenuMyCard.getCallBackData();
         TransmittedData transmittedData = new TransmittedData(0);
