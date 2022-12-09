@@ -78,7 +78,6 @@ class MyCardsServiceTest {
                 new Card(1,0,decimal,2,1),
                 new Card(2,1,decimal,3,2));
 
-
     }
 
 }
