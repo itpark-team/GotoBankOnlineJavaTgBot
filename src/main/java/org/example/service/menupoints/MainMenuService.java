@@ -60,17 +60,16 @@ public class MainMenuService {
 
             transmittedData.setState(State.ClickInMenuMyCards);
             return message;
-        }
-        else if (callBackData.equals(ButtonsStorage.CurrentExchangeRateInMenuMain.getCallBackData())) {
+        } else if (callBackData.equals(ButtonsStorage.CurrentExchangeRateInMenuMain.getCallBackData())) {
 
             CbrApiWorker cbrApiWorker = new CbrApiWorker();
-            ExchangeRate exchangeRate = cbrApiWorker.getCurrentExchangeRate();
+            String json = cbrApiWorker.getJsonCurrentExchangeRate();
+            ExchangeRate exchangeRate = cbrApiWorker.parseCurrentExchangeRate(json);
 
-            message.setText(DialogStringsStorage.createCurrentExchangeRate(exchangeRate.getDateAsString(),exchangeRate.getUsd(),exchangeRate.getEur()));
+            message.setText(DialogStringsStorage.createCurrentExchangeRate(exchangeRate.getDateAsString(), exchangeRate.getUsd(), exchangeRate.getEur()));
             transmittedData.setState(State.CommandStart);
             return message;
-        }
-        else if (callBackData.equals(ButtonsStorage.TransferMoneyInMenuMain.getCallBackData())) {
+        } else if (callBackData.equals(ButtonsStorage.TransferMoneyInMenuMain.getCallBackData())) {
 
             List<Card> cards = dbManager.getTableCards().getAllByChatId(transmittedData.getChatId());
 
