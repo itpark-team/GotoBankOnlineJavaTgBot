@@ -10,5 +10,6 @@ public enum State {
     ClickInMenuApproveDeleteSpecificCard,
     ClickNumberCardFromForTransaction,
     InputNumberCardToForTransaction,
-    InputMoneyForTransaction
+    InputMoneyForTransaction,
+    GoToMainMenuBySharedInlineButton
 }

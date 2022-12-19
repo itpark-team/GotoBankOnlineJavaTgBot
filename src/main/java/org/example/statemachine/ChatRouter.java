@@ -1,6 +1,5 @@
 package org.example.statemachine;
 
-import org.example.bot.BotInitializer;
 import org.example.service.ServiceManager;
 import org.example.service.menupoints.SharedService;
 import org.example.util.SystemStringsStorage;
@@ -33,7 +32,7 @@ public class ChatRouter {
         logger.info(String.format("ROUTE: %d %s", chatId, transmittedData.getState()));
 
         if (textData.equals(SystemStringsStorage.CommandReset) && transmittedData.getState() != State.CommandStart) {
-            return SharedService.goToProcessClickOnInlineButtonInMenuMyCards(transmittedData);
+            return SharedService.goToMenuMainByCommandStart(transmittedData);
         }
 
         return serviceManager.processUpdate(textData, transmittedData);

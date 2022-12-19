@@ -219,4 +219,25 @@ public class InlineKeyboardsMarkupStorage {
 
     }
 
+    public static InlineKeyboardMarkup getGoToMainMenuShared() {
+
+        List<List<InlineKeyboardButton>> keyboard = new ArrayList<>();
+
+        List<InlineKeyboardButton> row;
+        InlineKeyboardButton button;
+
+        row = new ArrayList<>();
+        button = new InlineKeyboardButton();
+        button.setText(ButtonsStorage.GoToMainMenuSharedButton.getName());
+        button.setCallbackData(ButtonsStorage.GoToMainMenuSharedButton.getCallBackData());
+        row.add(button);
+        keyboard.add(row);
+
+        InlineKeyboardMarkup replyKeyboardMarkup = new InlineKeyboardMarkup();
+        replyKeyboardMarkup.setKeyboard(keyboard);
+
+        return replyKeyboardMarkup;
+
+    }
+
 }

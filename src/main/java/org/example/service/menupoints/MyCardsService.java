@@ -24,7 +24,7 @@ public class MyCardsService {
         message.setChatId(transmittedData.getChatId());
 
         if (callBackData.equals(ButtonsStorage.BackInMenuMyCard.getCallBackData())) {
-            return SharedService.goToProcessClickOnInlineButtonInMenuMyCards(transmittedData);
+            return SharedService.goToMenuMainByCommandStart(transmittedData);
         } else if (callBackData.equals(ButtonsStorage.AddNewCardInMenuMyCard.getCallBackData())) {
 
             List<PaymentSystem> paymentSystemList = dbManager.getTablePaymentSystems().getAll();
@@ -114,8 +114,9 @@ public class MyCardsService {
         dbManager.getTableCards().depositMoneyToBalanceByCardId(card.getId(), money);
 
         message.setText(DialogStringsStorage.ActionIncomeMoneyForSpecificCardOk);
+        message.setReplyMarkup(InlineKeyboardsMarkupStorage.getGoToMainMenuShared());
 
-        transmittedData.setState(State.CommandStart);
+        transmittedData.setState(State.GoToMainMenuBySharedInlineButton);
         return message;
     }
 
@@ -130,14 +131,16 @@ public class MyCardsService {
             dbManager.getTableCards().deleteByCardId(card.getId());
 
             message.setText(DialogStringsStorage.ActionApproveDeleteSpecificCardYes);
+            message.setReplyMarkup(InlineKeyboardsMarkupStorage.getGoToMainMenuShared());
 
-            transmittedData.setState(State.CommandStart);
+            transmittedData.setState(State.GoToMainMenuBySharedInlineButton);
             return message;
         } else if (callBackData.equals(ButtonsStorage.MenuApproveDeleteSpecificCardNo.getCallBackData())) {
 
             message.setText(DialogStringsStorage.ActionApproveDeleteSpecificCardNo);
+            message.setReplyMarkup(InlineKeyboardsMarkupStorage.getGoToMainMenuShared());
 
-            transmittedData.setState(State.CommandStart);
+            transmittedData.setState(State.GoToMainMenuBySharedInlineButton);
             return message;
         }
 
@@ -163,8 +166,9 @@ public class MyCardsService {
             dbManager.getTableCards().addNew(card);
 
             message.setText(DialogStringsStorage.createMenuChoosePaySystemForNewCard(paymentSystem.getName(), cardNumber));
+            message.setReplyMarkup(InlineKeyboardsMarkupStorage.getGoToMainMenuShared());
 
-            transmittedData.setState(State.CommandStart);
+            transmittedData.setState(State.GoToMainMenuBySharedInlineButton);
             return message;
         }
 

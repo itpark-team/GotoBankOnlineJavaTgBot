@@ -34,4 +34,6 @@ public class ButtonsStorage {
     public final static Button MenuApproveDeleteSpecificCardYes = new Button("Да", "ButtonMenuApproveDeleteSpecificCardYes");
     public final static Button MenuApproveDeleteSpecificCardNo = new Button("Нет", "ButtonMenuApproveDeleteSpecificCardNo");
 
+    public final static Button GoToMainMenuSharedButton = new Button("В главное меню", "BackToMainMenuSharedButton");
+
 }

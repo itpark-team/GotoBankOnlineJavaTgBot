@@ -7,6 +7,7 @@ import org.example.statemachine.State;
 import org.example.statemachine.TransmittedData;
 import org.example.util.Constants;
 import org.example.util.DialogStringsStorage;
+import org.example.util.InlineKeyboardsMarkupStorage;
 import org.example.util.SystemStringsStorage;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 
@@ -100,7 +101,9 @@ public class TransactionsService {
 
         message.setText(DialogStringsStorage.createInputMoneyForTransactionOk(paymentSystem.getName(),cardFromAfterTransaction.getNumber(),cardFromAfterTransaction.getBalance()));
 
-        transmittedData.setState(State.CommandStart);
+        message.setReplyMarkup(InlineKeyboardsMarkupStorage.getGoToMainMenuShared());
+
+        transmittedData.setState(State.GoToMainMenuBySharedInlineButton);
         return message;
     }
 }

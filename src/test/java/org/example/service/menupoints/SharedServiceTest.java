@@ -20,7 +20,7 @@ class SharedServiceTest {
         transmittedData.getDataStorage().add("aaa",1);
 
         //тестирование
-        SendMessage message = SharedService.goToProcessClickOnInlineButtonInMenuMyCards(transmittedData);
+        SendMessage message = SharedService.goToMenuMainByCommandStart(transmittedData);
 
         Object actualDataStorageElement = transmittedData.getDataStorage().get("aaa");
 

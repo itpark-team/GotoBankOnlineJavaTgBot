@@ -31,7 +31,7 @@ public class MainMenuService {
             return message;
         }
 
-        return SharedService.goToProcessClickOnInlineButtonInMenuMyCards(transmittedData);
+        return SharedService.goToMenuMainByCommandStart(transmittedData);
     }
 
     public SendMessage processClickInMenuMain(String callBackData, TransmittedData transmittedData) throws Exception {
@@ -67,7 +67,9 @@ public class MainMenuService {
             ExchangeRate exchangeRate = cbrApiWorker.parseCurrentExchangeRate(json);
 
             message.setText(DialogStringsStorage.createCurrentExchangeRate(exchangeRate.getDateAsString(), exchangeRate.getUsd(), exchangeRate.getEur()));
-            transmittedData.setState(State.CommandStart);
+            message.setReplyMarkup(InlineKeyboardsMarkupStorage.getGoToMainMenuShared());
+
+            transmittedData.setState(State.GoToMainMenuBySharedInlineButton);
             return message;
         } else if (callBackData.equals(ButtonsStorage.TransferMoneyInMenuMain.getCallBackData())) {
 

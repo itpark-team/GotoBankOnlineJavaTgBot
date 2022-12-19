@@ -8,6 +8,7 @@ import org.example.model.tables.TablePaymentSystems;
 import org.example.model.tables.TablePaymentSystemsImpl;
 import org.example.service.menupoints.MyCardsService;
 import org.example.service.menupoints.MainMenuService;
+import org.example.service.menupoints.SharedService;
 import org.example.service.menupoints.TransactionsService;
 import org.example.statemachine.State;
 import org.example.statemachine.TransmittedData;
@@ -56,6 +57,8 @@ public class ServiceManager {
         methods.put(State.ClickNumberCardFromForTransaction, transactionsService::processClickNumberCardFromForTransaction);
         methods.put(State.InputNumberCardToForTransaction, transactionsService::processInputNumberCardToForTransaction);
         methods.put(State.InputMoneyForTransaction, transactionsService::processInputMoneyForTransaction);
+
+        methods.put(State.GoToMainMenuBySharedInlineButton, SharedService::processGoToMenuMainByInlineButton);
 
     }
 
