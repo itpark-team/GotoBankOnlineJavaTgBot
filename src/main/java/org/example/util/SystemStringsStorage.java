@@ -21,7 +21,6 @@ public class SystemStringsStorage {
     public final static String DbUser = "goto_bank_online_user";
     public final static String DbPassword = "12345";
 
-
 //    private final static String POSTGRES_DB = System.getenv("POSTGRES_DB");
 //    private final static String POSTGRES_USER = System.getenv("POSTGRES_USER");
 //    private final static String POSTGRES_PASSWORD = System.getenv("POSTGRES_PASSWORD");

@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface TableCards {
     void addNew(Card card) throws Exception;
-    Card getByCardId(long cardId) throws Exception;
+    Card getByCardId(int cardId) throws Exception;
     Card getByNumber(long findNumber) throws Exception;
     boolean hasCardWithNumber(long number) throws Exception;
     void deleteByCardId(int cardId) throws Exception;

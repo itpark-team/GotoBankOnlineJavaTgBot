@@ -32,9 +32,11 @@ public class TransactionsService {
             transmittedData.getDataStorage().add(SystemStringsStorage.DataStorageCardIdFrom, cardId);
 
             Card card = dbManager.getTableCards().getByCardId(cardId);
-            PaymentSystem paymentSystem = dbManager.getTablePaymentSystems().getById(card.getPaymentSystemId());
+//            PaymentSystem paymentSystem = dbManager.getTablePaymentSystems().getById(card.getPaymentSystemId());
 
-            message.setText(DialogStringsStorage.createInputNumberCardToForTransaction(paymentSystem.getName(), card.getNumber(), card.getBalance()));
+            //message.setText(DialogStringsStorage.createInputNumberCardToForTransaction(paymentSystem.getName(), card.getNumber(), card.getBalance()));
+
+            message.setText(DialogStringsStorage.createInputNumberCardToForTransaction(card.getPaymentSystem().getName(), card.getNumber(), card.getBalance()));
 
             transmittedData.setState(State.InputNumberCardToForTransaction);
             return message;
@@ -97,9 +99,11 @@ public class TransactionsService {
         dbManager.getTableCards().depositMoneyToBalanceByCardId(cardIdTo, money);
 
         Card cardFromAfterTransaction = dbManager.getTableCards().getByCardId(cardIdFrom);
-        PaymentSystem paymentSystem = dbManager.getTablePaymentSystems().getById(cardFromAfterTransaction.getPaymentSystemId());
+//        PaymentSystem paymentSystem = dbManager.getTablePaymentSystems().getById(cardFromAfterTransaction.getPaymentSystemId());
 
-        message.setText(DialogStringsStorage.createInputMoneyForTransactionOk(paymentSystem.getName(),cardFromAfterTransaction.getNumber(),cardFromAfterTransaction.getBalance()));
+        //message.setText(DialogStringsStorage.createInputMoneyForTransactionOk(paymentSystem.getName(), cardFromAfterTransaction.getNumber(), cardFromAfterTransaction.getBalance()));
+
+        message.setText(DialogStringsStorage.createInputMoneyForTransactionOk(cardFromAfterTransaction.getPaymentSystem().getName(), cardFromAfterTransaction.getNumber(), cardFromAfterTransaction.getBalance()));
 
         message.setReplyMarkup(InlineKeyboardsMarkupStorage.getGoToMainMenuShared());
 

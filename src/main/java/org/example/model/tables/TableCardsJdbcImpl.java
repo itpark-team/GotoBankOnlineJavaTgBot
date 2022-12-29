@@ -11,10 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class TableCardsImpl implements TableCards {
+/*public class TableCardsJdbcImpl implements TableCards {
     private Connection connection;
 
-    public TableCardsImpl(Connection connection) {
+    public TableCardsJdbcImpl(Connection connection) {
         this.connection = connection;
     }
 
@@ -148,4 +148,4 @@ public class TableCardsImpl implements TableCards {
     }
 
 
-}
+}*/

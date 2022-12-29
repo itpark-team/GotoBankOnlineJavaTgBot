@@ -9,10 +9,10 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TablePaymentSystemsImpl implements TablePaymentSystems {
+/*public class TablePaymentSystemsJdbcImpl implements TablePaymentSystems {
     private Connection connection;
 
-    public TablePaymentSystemsImpl(Connection connection) {
+    public TablePaymentSystemsJdbcImpl(Connection connection) {
         this.connection = connection;
     }
 
@@ -61,4 +61,4 @@ public class TablePaymentSystemsImpl implements TablePaymentSystems {
 
         return paymentSystem;
     }
-}
+}*/

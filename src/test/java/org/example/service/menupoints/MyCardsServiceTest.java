@@ -65,19 +65,19 @@ class MyCardsServiceTest {
         assertThat(expectedState).isEqualTo(actualState);
     }
 
-    @Test
-    public void processClickInMenuApproveDeleteSpecificCard_ClickYes_ReturnMessageWithTextActionApproveDeleteSpecificCardYes_CommandStart() throws Exception {
-
-        String callBackData = ButtonsStorage.AddNewCardInMenuMyCard.getCallBackData();
-        TransmittedData transmittedData = new TransmittedData(0);
-        TableCards tableCards = Mockito.mock(TableCards.class);
-        List<Card> cards = new ArrayList<>();
-        BigDecimal decimal = new BigDecimal(1000);
-        Collections.addAll(cards,
-                new Card(0,0,decimal,1,1),
-                new Card(1,0,decimal,2,1),
-                new Card(2,1,decimal,3,2));
-
-    }
+//    @Test
+//    public void processClickInMenuApproveDeleteSpecificCard_ClickYes_ReturnMessageWithTextActionApproveDeleteSpecificCardYes_CommandStart() throws Exception {
+//
+//        String callBackData = ButtonsStorage.AddNewCardInMenuMyCard.getCallBackData();
+//        TransmittedData transmittedData = new TransmittedData(0);
+//        TableCards tableCards = Mockito.mock(TableCards.class);
+//        List<Card> cards = new ArrayList<>();
+//        BigDecimal decimal = new BigDecimal(1000);
+//        Collections.addAll(cards,
+//                new Card(0,0,decimal,1,1),
+//                new Card(1,0,decimal,2,1),
+//                new Card(2,1,decimal,3,2));
+//
+//    }
 
 }

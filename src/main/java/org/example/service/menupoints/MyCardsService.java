@@ -40,8 +40,8 @@ public class MyCardsService {
             int cardId = Integer.parseInt(callBackData);
 
             Card card = dbManager.getTableCards().getByCardId(cardId);
-            PaymentSystem paymentSystem = dbManager.getTablePaymentSystems().getById(card.getPaymentSystemId());
-            card.setPaymentSystem(paymentSystem);
+//            PaymentSystem paymentSystem = dbManager.getTablePaymentSystems().getById(card.getPaymentSystemId());
+//            card.setPaymentSystem(paymentSystem);
 
             message.setText(DialogStringsStorage.createMenuChooseSpecificCard(card.getPaymentSystem().getName(), card.getNumber(), card.getBalance()));
             message.setReplyMarkup(InlineKeyboardsMarkupStorage.getMenuChooseSpecificCard());
@@ -74,13 +74,13 @@ public class MyCardsService {
         } else if (callBackData.equals(ButtonsStorage.BackInMenuChooseSpecificCard.getCallBackData())) {
             List<Card> cards = dbManager.getTableCards().getAllByChatId(transmittedData.getChatId());
 
-            List<PaymentSystem> paymentSystems = dbManager.getTablePaymentSystems().getAll();
-            cards.stream().forEach(
-                    card -> card.setPaymentSystem(
-                            paymentSystems.stream()
-                                    .filter(paymentSystem -> paymentSystem.getId() == card.getPaymentSystemId()).findFirst().get()
-                    )
-            );
+//            List<PaymentSystem> paymentSystems = dbManager.getTablePaymentSystems().getAll();
+//            cards.stream().forEach(
+//                    card -> card.setPaymentSystem(
+//                            paymentSystems.stream()
+//                                    .filter(paymentSystem -> paymentSystem.getId() == card.getPaymentSystemId()).findFirst().get()
+//                    )
+//            );
 
             message.setText(DialogStringsStorage.MenuMyCardsText);
             message.setReplyMarkup(InlineKeyboardsMarkupStorage.createMenuMyCardsHasCards(cards));
@@ -161,7 +161,14 @@ public class MyCardsService {
                 cardNumber = (long) (Math.random() * 10000000000000000L);
             } while (dbManager.getTableCards().hasCardWithNumber(cardNumber));
 
-            Card card = new Card(0, transmittedData.getChatId(), Constants.DefaultNewCardBalance, cardNumber, paymentSystemId);
+//            Card card = new Card(0, transmittedData.getChatId(), Constants.DefaultNewCardBalance, cardNumber, paymentSystemId);
+
+            Card card = Card.builder()
+                    .chatId(transmittedData.getChatId())
+                    .balance(Constants.DefaultNewCardBalance)
+                    .number(cardNumber)
+                    .paymentSystem(paymentSystem)
+                    .build();
 
             dbManager.getTableCards().addNew(card);
 

@@ -4,10 +4,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class DbConnection {
+public class JdbcConnection {
     private Connection connection;
 
-    public DbConnection(String url, String user, String password) throws SQLException {
+    public JdbcConnection(String url, String user, String password) throws SQLException {
         connection = DriverManager.getConnection(url, user, password);
     }
 

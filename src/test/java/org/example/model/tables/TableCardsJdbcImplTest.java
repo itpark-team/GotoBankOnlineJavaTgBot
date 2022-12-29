@@ -1,29 +1,27 @@
 package org.example.model.tables;
 
-import org.example.model.connection.DbConnection;
+import org.example.model.connection.JdbcConnection;
 import org.example.model.entities.Card;
 import org.example.util.SystemStringsStorage;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import java.sql.Connection;
-import java.sql.SQLException;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.verify;
 
-class TableCardsImplTest {
+class TableCardsJdbcImplTest {
 
-    @Test
+    /*@Test
     void getByCardId_Id6_ReturnCardWithNumber9376437851174408() throws Exception {
 
-        Connection connection = new DbConnection(
+        Connection connection = new JdbcConnection(
                 SystemStringsStorage.TestDbUrl,
                 SystemStringsStorage.TestDbUser,
                 SystemStringsStorage.TestDbPassword).getConnection();
 
-        TableCardsImpl tableCards = new TableCardsImpl(connection);
+        TableCardsJdbcImpl tableCards = new TableCardsJdbcImpl(connection);
 
         Card card = tableCards.getByCardId(6);
 
@@ -36,12 +34,12 @@ class TableCardsImplTest {
 
     @Test
     public void getByNumber_findNumber309914510451073_ReturnCardWithNumber309914510451073() throws Exception {
-        Connection connection = new DbConnection(
+        Connection connection = new JdbcConnection(
                 SystemStringsStorage.TestDbUrl,
                 SystemStringsStorage.TestDbUser,
                 SystemStringsStorage.TestDbPassword).getConnection();
 
-        TableCardsImpl tableCards = new TableCardsImpl(connection);
+        TableCardsJdbcImpl tableCards = new TableCardsJdbcImpl(connection);
 
         Card card = tableCards.getByNumber(309914510451073l);
 
@@ -58,6 +56,6 @@ class TableCardsImplTest {
         tableCards.deleteByCardId(1);
 
         verify(tableCards).deleteByCardId(1);
-    }
+    }*/
 
 }

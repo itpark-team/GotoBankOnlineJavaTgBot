@@ -1,49 +1,34 @@
 package org.example.model.entities;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
 import java.math.BigDecimal;
 
+@Entity
+@Table(name = "cards")
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 public class Card {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @Column(name = "chat_id")
     private long chatId;
+
+    @Column(name = "balance")
     private BigDecimal balance;
+
+    @Column(name = "number")
     private long number;
-    private int paymentSystemId;
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "payment_system_id")
     private PaymentSystem paymentSystem;
-
-    public Card(int id, long chatId, BigDecimal balance, long number, int paymentSystemId) {
-        this.id = id;
-        this.chatId = chatId;
-        this.balance = balance;
-        this.number = number;
-        this.paymentSystemId = paymentSystemId;
-        this.paymentSystem = null;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public long getChatId() {
-        return chatId;
-    }
-
-    public BigDecimal getBalance() {
-        return balance;
-    }
-
-    public long getNumber() {
-        return number;
-    }
-
-    public int getPaymentSystemId() {
-        return paymentSystemId;
-    }
-
-    public PaymentSystem getPaymentSystem() {
-        return paymentSystem;
-    }
-
-    public void setPaymentSystem(PaymentSystem paymentSystem) {
-        this.paymentSystem = paymentSystem;
-    }
 }

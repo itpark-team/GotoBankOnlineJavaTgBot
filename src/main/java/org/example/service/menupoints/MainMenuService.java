@@ -46,13 +46,13 @@ public class MainMenuService {
                 message.setText(DialogStringsStorage.MenuMyCardsText + "\n" + DialogStringsStorage.MenuMyCardsNoCardsText);
                 message.setReplyMarkup(InlineKeyboardsMarkupStorage.getMenuMyCardsNoCards());
             } else {
-                List<PaymentSystem> paymentSystems = dbManager.getTablePaymentSystems().getAll();
-                cards.stream().forEach(
-                        card -> card.setPaymentSystem(
-                                paymentSystems.stream()
-                                        .filter(paymentSystem -> paymentSystem.getId() == card.getPaymentSystemId()).findFirst().get()
-                        )
-                );
+//                List<PaymentSystem> paymentSystems = dbManager.getTablePaymentSystems().getAll();
+//                cards.stream().forEach(
+//                        card -> card.setPaymentSystem(
+//                                paymentSystems.stream()
+//                                        .filter(paymentSystem -> paymentSystem.getId() == card.getPaymentSystemId()).findFirst().get()
+//                        )
+//                );
 
                 message.setText(DialogStringsStorage.MenuMyCardsText);
                 message.setReplyMarkup(InlineKeyboardsMarkupStorage.createMenuMyCardsHasCards(cards));
@@ -78,13 +78,13 @@ public class MainMenuService {
             if (cards.size() == 0) {
                 message.setText(DialogStringsStorage.MenuTransactionsNoCardsText);
             } else {
-                List<PaymentSystem> paymentSystems = dbManager.getTablePaymentSystems().getAll();
-                cards.stream().forEach(
-                        card -> card.setPaymentSystem(
-                                paymentSystems.stream()
-                                        .filter(paymentSystem -> paymentSystem.getId() == card.getPaymentSystemId()).findFirst().get()
-                        )
-                );
+//                List<PaymentSystem> paymentSystems = dbManager.getTablePaymentSystems().getAll();
+//                cards.stream().forEach(
+//                        card -> card.setPaymentSystem(
+//                                paymentSystems.stream()
+//                                        .filter(paymentSystem -> paymentSystem.getId() == card.getPaymentSystemId()).findFirst().get()
+//                        )
+//                );
 
                 message.setText(DialogStringsStorage.MenuTransactionsExistCardsText);
                 message.setReplyMarkup(InlineKeyboardsMarkupStorage.createMenuTransactionsHasCards(cards));
