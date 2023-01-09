@@ -18,7 +18,7 @@ import java.sql.Connection;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ServiceManager {
+public class ServiceManager implements Service {
     private final Map<State, Service> methods;
 
     private final MainMenuService mainMenuService;

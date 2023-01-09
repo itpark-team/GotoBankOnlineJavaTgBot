@@ -1,5 +1,6 @@
 package org.example.statemachine;
 
+import org.example.service.Service;
 import org.example.service.ServiceManager;
 import org.example.service.menupoints.SharedService;
 import org.example.util.SystemStringsStorage;
@@ -15,7 +16,7 @@ public class ChatRouter {
     private static final Logger logger = LoggerFactory.getLogger(ChatRouter.class);
 
     private Map<Long, TransmittedData> chats;
-    private ServiceManager serviceManager;
+    private Service serviceManager;
 
     public ChatRouter() throws Exception {
         chats = new HashMap<>();
